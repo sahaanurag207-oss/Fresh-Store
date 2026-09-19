@@ -670,6 +670,8 @@ input {
   .testimonial-card {
     flex-direction: column;
     text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
     padding-left: 15 px;
     padding-right: 15 px;
   }
