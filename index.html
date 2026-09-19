@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="follow-bar">
             <span>Follow us On</span>
             <div class="follow-line"></div>
@@ -23,12 +23,12 @@
                 <span></span>
             </button>
             <div class="nav-links">
-                <a href="#Home" class="active">Home</a>
-                <a href="#About">About us</a>
-                <a href="#Testimonials">Testimonials</a>
-                <a href="#Clients">Clients</a>
-                <a href="#Pricing">Pricing</a>
-                <a href="#Contacts">Contacts</a>
+                <a href="#home" class="active">Home</a>
+                <a href="#categories">About us</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#categories">Clients</a>
+                <a href="#testimonials">Pricing</a>
+                <a href="#contacts">Contacts</a>
             </div>
             <div class="search-box">
                 <input type="text" placeholder="Search">
@@ -95,7 +95,7 @@
     </section>
 
     <!-- 2. CATEGORIES SECTION -->
-    <section class="categories">
+    <section class="categories" id="categories">
         <div class="watermark">CATEGORIES</div>
 
         <h2>Shop By Category</h2>
@@ -195,7 +195,7 @@
     </section>
 
     <!-- 3. TESTIMONIAL REVIEW SECTION -->
-    <section class="testimonials">
+    <section class="testimonials" id="testimonials">
         <div class="testimonial-card">
             <div class="card-tab tab-top-right"></div>
             <div class="card-tab tab-bottom-left"></div>
@@ -220,6 +220,10 @@
             </div>
         </div>
     </section>
+
+    <footer id="contacts" class="footer-contact">
+        <p>Contact us: hello@freshstore.com | +1 (555) 123-4567</p>
+    </footer>
 
     <script>
         const navbar = document.querySelector('.navbar');
