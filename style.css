@@ -666,11 +666,11 @@ input {
   .product-row {
     grid-template-columns: repeat(2, minmax(140px, 1fr));
   }
-  
+
   .testimonial-card {
     flex-direction: column;
     text-align: center;
-    padding: 30px 15px;
+    padding: 30px 25px;
 }
 
   .hero-pagination {
