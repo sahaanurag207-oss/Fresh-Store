@@ -609,6 +609,35 @@ input {
   font-size: 12px;
 }
 
+.footer-contact {
+  background: #f6f8f3;
+  padding: 24px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(85, 182, 22, 0.15);
+}
+
+.footer-contact p {
+  margin: 0;
+  font-size: 14px;
+  color: #2f3a2f;
+  line-height: 1.6;
+}
+
+.footer-contact a {
+  color: #4b8d1d;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
+.footer-contact span {
+  color: #6b7a68;
+  margin: 0 8px;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .hero-body {
