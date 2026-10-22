@@ -229,17 +229,6 @@
             <a href="tel:+15551234567">+1 (555) 123-4567</a>
         </p>
     </footer>
-
-    <script>
-        const navbar = document.querySelector('.navbar');
-        const menuToggle = document.querySelector('.menu-toggle');
-
-        if (menuToggle && navbar) {
-            menuToggle.addEventListener('click', () => {
-                const isOpen = navbar.classList.toggle('open');
-                menuToggle.setAttribute('aria-expanded', String(isOpen));
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
