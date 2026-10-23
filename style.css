@@ -258,8 +258,8 @@ input {
 }
 
 .btn-white {
-  background-color: white;
-  color: #55b616;
+  background-color: rgb(24, 120, 29);
+  color: #dde1bc;
   border: none;
   padding: 11px 32px;
   font-weight: 700;
