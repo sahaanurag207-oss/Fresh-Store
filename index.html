@@ -31,8 +31,14 @@
                 <a href="#contacts">Contacts</a>
             </div>
             <div class="search-box">
-                <input type="text" placeholder="Search">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="search" placeholder="Search" aria-label="Search products">
+                <button type="button" aria-label="Search products"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="cart-box">
+                <button class="cart-trigger" id="cartbtn" type="button" aria-label="Shopping cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" aria-live="polite" hidden>0</span>
+                </button>
             </div>
         </nav>
 
