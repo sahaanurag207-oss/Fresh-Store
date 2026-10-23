@@ -83,6 +83,19 @@ input {
   gap: 30px;
 }
 
+.brand-logo {
+  display: block;
+  flex: 0 0 auto;
+  height: 48px;
+  margin-right: auto;
+}
+
+.brand-logo img {
+  display: block;
+  width: auto;
+  height: 48px;
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -753,12 +766,14 @@ input {
   }
 
   .search-box {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     justify-content: space-between;
   }
 
   .search-box input {
-    width: 100%;
+    width: auto;
+    min-width: 0;
   }
 
   .product-row {
