@@ -269,10 +269,13 @@ input {
   min-height: 44px;
   min-width: 44px;
 }
+
 .btn-white:hover {
   background-color: #1c7029;
   color: rgb(238, 240, 160);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transform: scale(1.04);
+  transition: 0.3s ease-in-out;
 }
 
 /* Hero Placeholder & Badges */
