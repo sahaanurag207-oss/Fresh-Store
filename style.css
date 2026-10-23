@@ -256,10 +256,9 @@ input {
   line-height: 1.6;
   margin-bottom: 25px;
 }
-
 .btn-white {
-  background-color: rgb(24, 120, 29);
-  color: #dde1bc;
+  background-color: rgb(255, 255, 255);
+  color: #55b616;
   border: none;
   padding: 11px 32px;
   font-weight: 700;
@@ -269,6 +268,11 @@ input {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   min-height: 44px;
   min-width: 44px;
+}
+.btn-white:hover {
+  background-color: #1c7029;
+  color: rgb(238, 240, 160);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Hero Placeholder & Badges */
