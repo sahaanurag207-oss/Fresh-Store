@@ -124,15 +124,35 @@ input {
 }
 
 .nav-links a {
+  position: relative;
+  display: inline-block;
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-size: 13px;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
 }
 
-.nav-links a.active,
-.nav-links a:hover {
+/* Underline Animation */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
   color: #fff;
-  font-weight: bold;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
 }
 
 .search-box {
@@ -145,12 +165,14 @@ input {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
- .search-box:hover {
+
+.search-box:hover {
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(255, 255, 255, 0.29);
   transform: scale(1.04);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
+
 .search-box input {
   background: transparent;
   padding: 4px 0;
@@ -161,6 +183,7 @@ input {
   font-size: 12px;
   width: 110px;
 }
+
 .search-box input:focus {
   width: 160px;
   transition: width 0.3s ease-in-out;
@@ -186,6 +209,7 @@ input {
 .cart-trigger {
   position: relative;
 }
+
 .cart-badge {
   position: absolute;
   top: -7px;
@@ -488,12 +512,6 @@ input {
   color: #888;
 }
 
-.card-button button {
-  min-height: 44px;
-  min-width: 44px;
-  padding: 8px 12px;
-}
-
 .card h3 {
   font-size: 13px;
   margin-bottom: 4px;
@@ -527,8 +545,11 @@ input {
   font-size: 10px;
   border-radius: 15px;
   cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
 }
 
+/* ---------------- 3. TESTIMONIALS SECTION ---------------- */
 .testimonials {
   position: relative;
   background:
@@ -646,6 +667,7 @@ input {
   font-size: 12px;
 }
 
+/* ---------------- 4. FOOTER ---------------- */
 .footer-contact {
   background: #f6f8f3;
   padding: 24px 20px;
@@ -675,7 +697,7 @@ input {
   margin: 0 8px;
 }
 
-/* Responsive */
+/* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 1024px) {
   .hero-body {
     gap: 24px;
@@ -753,7 +775,7 @@ input {
     flex-direction: column;
     text-align: center;
     padding: 30px 25px;
-}
+  }
 
   .hero-pagination {
     justify-content: center;
@@ -809,3 +831,4 @@ input {
     top: 12px;
   }
 }
+
