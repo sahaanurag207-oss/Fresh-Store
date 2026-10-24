@@ -9,6 +9,9 @@ const heroImages = document.querySelectorAll('.hero-image');
 const heroPaginationButtons = document.querySelectorAll('.hero-pagination button');
 const heroHeading = document.querySelector('.hero-heading');
 const heroDescription = document.querySelector('.hero-description');
+const testimonialCard = document.querySelector('.testimonial-card');
+const reviewTrack = document.querySelector('.review-track');
+const reviewSlides = document.querySelectorAll('.review-slide');
 
 let cartCount = 0;
 
@@ -48,6 +51,28 @@ if (
 
     if (!reducedMotion) {
         window.setInterval(() => showHeroImage(activeHeroImage + 1), 5000);
+    }
+}
+
+if (
+    testimonialCard &&
+    reviewTrack &&
+    reviewSlides.length > 1
+) {
+    let activeReview = 0;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function showReview(index) {
+        activeReview = (index + reviewSlides.length) % reviewSlides.length;
+        reviewTrack.style.transform = `translateX(-${activeReview * 100}%)`;
+
+        reviewSlides.forEach((slide, slideIndex) => {
+            slide.setAttribute('aria-hidden', String(slideIndex !== activeReview));
+        });
+    }
+
+    if (!reducedMotion) {
+        window.setInterval(() => showReview(activeReview + 1), 5000);
     }
 }
 

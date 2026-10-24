@@ -235,28 +235,54 @@
 
     <!-- 3. TESTIMONIAL REVIEW SECTION -->
     <section class="testimonials" id="testimonials">
-        <div class="testimonial-card">
+        <div class="testimonial-card" aria-label="Customer reviews">
             <div class="card-tab tab-top-right"></div>
             <div class="card-tab tab-bottom-left"></div>
 
-            <div class="user-profile">
-                <img
-                    src="assets/client.jpg"
-                    srcset="assets/client.jpg 500w, assets/client.jpg 800w"
-                    sizes="(max-width: 768px) 70px, 70px"
-                    alt="Customer testimonial"
-                    class="user-avatar-placeholder"
-                >
-                <h4>Lisa Ray</h4>
-                <span>Product Manager</span>
-                <small>Avent Humanity</small>
+            <h2 class="testimonial-heading">What Our Customers Are Saying</h2>
+            <div class="review-viewport" aria-live="polite">
+                <div class="review-track">
+                    <article class="review-slide" aria-hidden="false">
+                        <div class="user-profile">
+                            <img class="customer-image" src="assets/client.jpg" alt="Lisa Ray">
+                            <h3>Lisa Ray</h3>
+                            <span>Product Manager</span>
+                            <small>Avent Humanity</small>
+                        </div>
+                        <div class="user-quote">
+                            <p>Fresh groceries and friendly service make every weekly shop easier. The quality is consistently excellent and the delivery is always on time.</p>
+                            <div class="rating" aria-label="5 out of 5 stars">★★★★★</div>
+                        </div>
+                    </article>
+
+                    <article class="review-slide" aria-hidden="true">
+                        <div class="user-profile">
+                            <img class="customer-image" src="assets/review-james.jpg" alt="James Miller">
+                            <h3>James Miller</h3>
+                            <span>Home Chef</span>
+                            <small>Customer since 2024</small>
+                        </div>
+                        <div class="user-quote">
+                            <p>The vegetables arrive crisp and full of flavor. Ordering is simple, and having fresh ingredients delivered saves me so much time.</p>
+                            <div class="rating" aria-label="5 out of 5 stars">★★★★★</div>
+                        </div>
+                    </article>
+
+                    <article class="review-slide" aria-hidden="true">
+                        <div class="user-profile">
+                            <img class="customer-image" src="assets/review-sofia.jpg" alt="Sofia Patel">
+                            <h3>Sofia Patel</h3>
+                            <span>Busy Parent</span>
+                            <small>Happy customer</small>
+                        </div>
+                        <div class="user-quote">
+                            <p>I love the variety and freshness. The delivery is reliable, and it makes planning healthy meals for my family much easier.</p>
+                            <div class="rating" aria-label="5 out of 5 stars">★★★★★</div>
+                        </div>
+                    </article>
+                </div>
             </div>
 
-            <div class="user-quote">
-                <h3>What Our Client Is Saying</h3>
-                <p>Fresh groceries and friendly service make every weekly shop easier. The quality is consistently excellent and the delivery is always on time.</p>
-                <div class="rating">★★★★★</div>
-            </div>
         </div>
     </section>
 
@@ -301,9 +327,15 @@
         <div class="footer-col social-col">
             <h3 class="footer-heading">Follow Us</h3>
             <div class="social-links">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="FreshStore on Instagram">Instagram</a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="FreshStore on Facebook">Facebook</a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="FreshStore on X">Twitter</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="FreshStore on Instagram">Instagram
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="FreshStore on Facebook">Facebook
+                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="FreshStore on X">Twitter
+                    <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
     </div>
