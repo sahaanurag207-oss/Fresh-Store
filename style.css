@@ -735,35 +735,94 @@ input {
 }
 
 /* ---------------- 4. FOOTER ---------------- */
-.footer-contact {
-  background: #f6f8f3;
-  padding: 24px 20px;
-  text-align: center;
-  border-top: 1px solid rgba(85, 182, 22, 0.15);
+.footer {
+    background-color: #2e5224;
+    color: #e5e5e5;
+    padding: 3rem 1.5rem 1.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
-.footer-contact p {
-  margin: 0;
-  font-size: 14px;
-  color: #2f3a2f;
-  line-height: 1.6;
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid #333333;
 }
 
-.footer-contact a {
-  color: #4b8d1d;
-  text-decoration: none;
-  font-weight: 700;
+.footer-logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.75rem;
 }
 
-.footer-contact a:hover {
-  text-decoration: underline;
+.footer-heading {
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
-.footer-contact span {
-  color: #6b7a68;
-  margin: 0 8px;
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer a {
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.footer a:hover,
+.footer a:focus-visible {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-contact-info {
+    font-style: normal;
+}
+
+.contact-label {
+    color: #888888;
+    margin-right: 0.25rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 1.5rem auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: #888888;
+}
+
+.legal-links {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
 /* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 1024px) {
   .navbar {
