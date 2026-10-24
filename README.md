@@ -6,7 +6,7 @@ A clean, responsive e-commerce grocery landing page built with pure semantic HTM
 
 ## Features
 
-* **Vibrant Hero Section:** Features a custom green gradient background, pill-style navigation with search, promotional headline, call-to-action button, and floating informational badges (e.g., *UPTO 30% Off*, *Fast Delivery*, and *230+ Happy Customers*).
+* **Vibrant Hero Section:** Features a custom green gradient background, pill-style navigation with search, promotional headline, call-to-action button, floating informational badges (e.g., *UPTO 30% Off*, *Fast Delivery*, and *230+ Happy Customers*), and an image carousel with automatic rotation and clickable pagination.
 * **Social Follow Bar:** Vertical "Follow us On" bar positioned along the side with social link icons.
 * **Shop by Category:** A 5-card product showcase with category titles, ratings, descriptions, dual pill action buttons (*Shop Now* / *Add to Cart*), and a faint background watermark text.
 * **Testimonials Card:** A centered client review card featuring an avatar placeholder, reviewer details, star rating, and distinct decorative corner tabs.
