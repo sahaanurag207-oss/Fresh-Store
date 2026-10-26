@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enter delivery details and review your FreshStore demo order.">
+    <title>Checkout | FreshStore</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="cart-header">
+        <a class="cart-brand" href="index.html" aria-label="FreshStore home">
+            <img src="assets/logo3.png" alt="FreshStore" width="110" height="52">
+        </a>
+        <a class="continue-link" href="cart.html">Return to cart</a>
+    </header>
+
+    <main class="cart-main">
+        <div class="cart-heading">
+            <div>
+                <p class="eyebrow">ONE LAST STEP</p>
+                <h1>Delivery &amp; payment</h1>
+            </div>
+            <a class="back-link" href="cart.html">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Back to cart
+            </a>
+        </div>
+
+        <p class="demo-notice">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            Demo checkout only. No payment will be processed and no card details are requested.
+        </p>
+
+        <div class="cart-layout payment-layout">
+            <section class="cart-panel payment-panel" aria-labelledby="delivery-heading">
+                <form id="payment-form">
+                    <fieldset class="checkout-section">
+                        <legend id="delivery-heading">Delivery details</legend>
+                        <div class="form-grid">
+                            <label class="form-field">
+                                Full name
+                                <input name="fullName" autocomplete="name" required maxlength="100">
+                            </label>
+                            <label class="form-field">
+                                Email address
+                                <input name="email" type="email" autocomplete="email" required maxlength="254">
+                            </label>
+                            <label class="form-field full-width">
+                                Street address
+                                <input name="address" autocomplete="street-address" required maxlength="160">
+                            </label>
+                            <label class="form-field">
+                                City
+                                <input name="city" autocomplete="address-level2" required maxlength="80">
+                            </label>
+                            <label class="form-field">
+                                ZIP / postal code
+                                <input name="postalCode" autocomplete="postal-code" required maxlength="20">
+                            </label>
+                            <label class="form-field full-width">
+                                Phone number
+                                <input name="phone" type="tel" autocomplete="tel" required maxlength="30">
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="checkout-section payment-method">
+                        <legend>Payment method</legend>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="cash-on-delivery" checked>
+                            <span class="payment-option-icon" aria-hidden="true">
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                            </span>
+                            <span>
+                                <strong>Cash on delivery</strong>
+                                <small>Pay when your groceries arrive.</small>
+                            </span>
+                        </label>
+                        <p class="payment-disclaimer">Online card payments are not enabled for this demo store.</p>
+                    </fieldset>
+
+                    <button class="place-order-button" type="submit">
+                        Place demo order
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </form>
+
+                <div class="order-confirmation" id="order-confirmation" role="status" hidden>
+                    <div class="confirmation-icon" aria-hidden="true">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h2>Demo order placed!</h2>
+                    <p>Your order is confirmed for this demo. No payment was taken.</p>
+                    <a class="primary-link" href="index.html#categories">Continue shopping</a>
+                </div>
+            </section>
+
+            <aside class="summary-panel payment-summary" aria-labelledby="summary-heading">
+                <h2 id="summary-heading">Your order</h2>
+                <div class="checkout-items" id="checkout-items"></div>
+                <div class="summary-line">
+                    <span>Subtotal</span>
+                    <strong id="subtotal">$0.00</strong>
+                </div>
+                <div class="summary-line">
+                    <span>Delivery</span>
+                    <strong id="delivery">Free</strong>
+                </div>
+                <p class="delivery-note" id="delivery-note"></p>
+                <div class="summary-total">
+                    <span>Total</span>
+                    <strong id="total">$0.00</strong>
+                </div>
+                <p class="secure-note">
+                    <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                    Freshness you can count on
+                </p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="cart-footer">
+        <p>&copy; 2026 FreshStore, Inc. All rights reserved.</p>
+        <a href="index.html">Back to FreshStore</a>
+    </footer>
+
+    <script src="payment.js"></script>
+</body>
+</html>

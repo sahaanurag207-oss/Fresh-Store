@@ -103,8 +103,8 @@ input {
   flex-direction: column;
   justify-content: center;
   gap: 3px;
-  width: 35px;
-  height: 35px;
+  width: 44px;
+  height: 44px;
   border: 1px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.08);
   border-radius: 6px;
@@ -182,6 +182,7 @@ input {
 }
 
 .search-box input {
+  flex: 1 1 auto;
   min-width: 0;
   background: transparent;
   padding: 4px 0;
@@ -233,6 +234,7 @@ input {
   border-radius: 50%;
   font-size: 18px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .cart-badge {
@@ -312,14 +314,6 @@ input {
 .btn-white:focus-visible {
   outline: 2px solid white;
   outline-offset: 4px;
-}
-
-.btn-white:hover {
-  background-color: #1c7029;
-  color: rgb(238, 240, 160);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  transform: scale(1.04);
-  transition: 0.3s ease-in-out;
 }
 
 /* Hero Placeholder & Badges */
@@ -549,6 +543,15 @@ input {
   margin-bottom: 45px;
 }
 
+.search-status {
+  position: relative;
+  z-index: 2;
+  min-height: 18px;
+  margin: -30px 0 27px;
+  color: #64745f;
+  font-size: 13px;
+}
+
 .product-row {
   position: relative;
   z-index: 2;
@@ -579,21 +582,27 @@ input {
 }
 
 .card h3 {
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 4px;
   color: #333;
 }
 
 .card p {
-  font-size: 10px;
+  font-size: 12px;
   color: #888;
   line-height: 1.4;
   margin-bottom: 6px;
 }
 
+.card .product-price {
+  color: #438f10;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .card .stars {
   color: #e74c3c;
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 10px;
 }
 
@@ -608,7 +617,7 @@ input {
   color: white;
   border: none;
   padding: 5px 10px;
-  font-size: 10px;
+  font-size: 12px;
   border-radius: 15px;
   cursor: pointer;
   min-height: 44px;
@@ -830,15 +839,14 @@ input {
 .social-links {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 36 px;
+  flex-wrap: wrap;
   gap: 0.5rem;
   color: #d1d0d0;
   transition: color 0.2s ease-in-out;
 }
 
 .social-links a:hover {
-  transform :translateY(-2px);
+  transform: translateY(-2px);
 }
 
 .footer-bottom {
@@ -1006,12 +1014,18 @@ input {
 
 @media (max-width: 480px) {
   .navbar {
+    flex-wrap: wrap;
     gap: 12px;
   }
 
+  .brand-logo,
+  .brand-logo img {
+    height: 42px;
+  }
+
   .search-box {
-    flex: 1;
-    min-width: 0;
+    flex: 1 0 100%;
+    order: 1;
     justify-content: space-between;
   }
 
@@ -1034,6 +1048,10 @@ input {
 
   .hero {
     padding: 18px 16px 26px;
+  }
+
+  .hero-pagination {
+    gap: 0;
   }
 
   .hero-body {

@@ -9,6 +9,8 @@ A clean, responsive e-commerce grocery landing page built with pure semantic HTM
 * **Vibrant Hero Section:** Features a custom green gradient background, pill-style navigation with search, promotional headline, call-to-action button, floating informational badges (e.g., *UPTO 30% Off*, *Fast Delivery*, and *230+ Happy Customers*), and an image carousel with automatic rotation and clickable pagination.
 * **Social Follow Bar:** Vertical "Follow us On" bar positioned along the side with social link icons.
 * **Shop by Category:** A 5-card product showcase with category titles, ratings, descriptions, dual pill action buttons (*Shop Now* / *Add to Cart*), and a faint background watermark text.
+* **Shopping Cart:** Cart items persist in local storage and can be reviewed, quantity-adjusted, or removed on the dedicated cart page, with an order subtotal and delivery estimate.
+* **Demo Checkout:** A delivery details form with a cash-on-delivery option and an order summary; no card details are collected and no payment is processed.
 * **Testimonials Card:** A centered client review card featuring an avatar placeholder, reviewer details, star rating, and distinct decorative corner tabs.
 * **Responsive Layout:** Adapts smoothly across desktop, tablet, and mobile screen sizes using CSS Flexbox.
 
@@ -19,4 +21,10 @@ A clean, responsive e-commerce grocery landing page built with pure semantic HTM
 ```text
 ├── index.html        # Semantic HTML structure
 ├── style.css         # Styling, gradients, layout, and responsiveness
+├── cart.html         # Shopping cart page
+├── cart.css          # Shopping cart page styling
+├── cart-page.js      # Cart rendering and quantity controls
+├── payment.html      # Demo checkout page
+├── payment.css       # Demo checkout styling
+├── payment.js        # Checkout summary and demo confirmation
 └── README.md         # Project documentation

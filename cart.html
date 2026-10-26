@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review and update your FreshStore shopping cart.">
+    <title>Your Cart | FreshStore</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="cart-header">
+        <a class="cart-brand" href="index.html" aria-label="FreshStore home">
+            <img src="assets/logo3.png" alt="FreshStore" width="110" height="52">
+        </a>
+        <a class="continue-link" href="index.html#categories">Continue shopping</a>
+    </header>
+
+    <main class="cart-main">
+        <div class="cart-heading">
+            <div>
+                <p class="eyebrow">FRESH FROM OUR STORE</p>
+                <h1>Your shopping cart</h1>
+            </div>
+            <a class="back-link" href="index.html#categories">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Back to shop
+            </a>
+        </div>
+
+        <div class="cart-layout">
+            <section class="cart-panel" aria-labelledby="items-heading">
+                <div class="panel-heading">
+                    <h2 id="items-heading">Cart items</h2>
+                    <button class="clear-cart" id="clear-cart" type="button" hidden>Clear cart</button>
+                </div>
+                <div class="cart-items" id="cart-items" aria-live="polite"></div>
+                <div class="empty-cart" id="empty-cart" hidden>
+                    <div class="empty-icon" aria-hidden="true">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </div>
+                    <h2>Your cart is empty</h2>
+                    <p>Pick up some fresh favorites and they’ll show up here.</p>
+                    <a class="primary-link" href="index.html#categories">Explore fresh picks</a>
+                </div>
+            </section>
+
+            <aside class="summary-panel" aria-labelledby="summary-heading">
+                <h2 id="summary-heading">Order summary</h2>
+                <div class="summary-line">
+                    <span>Subtotal</span>
+                    <strong id="subtotal">$0.00</strong>
+                </div>
+                <div class="summary-line">
+                    <span>Delivery</span>
+                    <strong id="delivery">$0.00</strong>
+                </div>
+                <p class="delivery-note" id="delivery-note">Add items to see delivery options.</p>
+                <div class="summary-total">
+                    <span>Total</span>
+                    <strong id="total">$0.00</strong>
+                </div>
+                <a class="checkout-link" id="checkout-link" href="index.html#categories" aria-disabled="true">
+                    Continue shopping
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+                <p class="secure-note">
+                    <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                    Freshness you can count on
+                </p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="cart-footer">
+        <p>&copy; 2026 FreshStore, Inc. All rights reserved.</p>
+        <a href="index.html">Back to FreshStore</a>
+    </footer>
+
+    <script src="cart-page.js"></script>
+</body>
+</html>

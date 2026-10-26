@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fresh Store</title>
+    <meta name="description" content="Shop fresh vegetables and everyday groceries from FreshStore.">
+    <title>FreshStore | Fresh groceries for every meal</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <main>
     <section class="hero" id="home" aria-label="Fresh Store home">
 
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Main navigation">
             <a href="#home" class="brand-logo" aria-label="Fresh Store home">
                 <img src="assets/logo3.png" alt="Fresh Store" width="50" height="48">
             </a>
@@ -21,21 +23,19 @@
             </button>
             <div class="nav-links">
                 <a href="#home" class="active">Home</a>
-                <a href="#categories">About us</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#categories">Clients</a>
-                <a href="#testimonials">Pricing</a>
+                <a href="#categories">Shop</a>
+                <a href="#testimonials">Reviews</a>
                 <a href="#contacts">Contacts</a>
             </div>
             <div class="search-box">
-                <input type="search" placeholder="Search" aria-label="Search products">
-                <button type="button" aria-label="Search products"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="search" placeholder="Search" aria-label="Search products" aria-controls="product-list">
+                    <button type="button" aria-label="Search products"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
             </div>
             <div class="cart-box">
-                <button class="cart-trigger" id="cartbtn" type="button" aria-label="Shopping cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
+                <a class="cart-trigger" id="cartbtn" href="cart.html" aria-label="Shopping cart">
+                    <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
                     <span class="cart-badge" aria-live="polite" hidden>0</span>
-                </button>
+                </a>
             </div>
         </nav>
 
@@ -133,112 +133,118 @@
 
         <h2>Shop By Category</h2>
         <p class="subtitle">Fresh vegetables, fruits, and essentials for every kitchen.</p>
+        <p class="search-status" id="search-status" role="status" aria-live="polite" hidden></p>
 
-        <div class="product-row">
+        <div class="product-row" id="product-list">
             <!-- ITEM-1 -->
-            <div class="card">
+            <article class="card" data-product-id="fresh-greens" data-price="3.49">
                 <img
                     src="assets/Fresh_veg.jpeg"
-                    srcset="assets/Fresh_veg.jpeg 500w, assets/Fresh_veg.jpeg 800w"
-                    sizes="(max-width: 768px) 100vw, 220px"
                     alt="Fresh Greens"
                     class="img-placeholder"
+                    loading="lazy"
+                    decoding="async"
                 >
                 <h3>Fresh Greens</h3>
+                <p class="product-price">$3.49 / item</p>
                 <p>Crisp greens and they are grown with care for healthier meals.</p>
-                <div class="stars">★★★★☆</div>
+                <div class="stars" role="img" aria-label="4 out of 5 stars">★★★★☆</div>
                 <div class="card-button">
-                    <button>Shop Now</button>
-                    <button>Add to Cart</button>
+                    <button type="button">Shop Now</button>
+                    <button type="button">Add to Cart</button>
                 </div>
-            </div>
+            </article>
 
             <!-- ITEM-2 -->
-            <div class="card">
+            <article class="card" data-product-id="fresh-carrots" data-price="2.49">
                 <img
                     src="assets/carrot.jpeg"
-                    srcset="assets/carrot.jpeg 500w, assets/carrot.jpeg 800w"
-                    sizes="(max-width: 768px) 100vw, 220px"
                     alt="Fresh Carrots"
                     class="img-placeholder"
+                    loading="lazy"
+                    decoding="async"
                 >
                 <h3>Fresh Carrots</h3>
+                <p class="product-price">$2.49 / item</p>
                 <p>Sweet, crunchy carrots picked for everyday freshness.</p>
-                <div class="stars">★★★★☆</div>
+                <div class="stars" role="img" aria-label="4 out of 5 stars">★★★★☆</div>
                 <div class="card-button">
-                    <button>Shop Now</button>
-                    <button>Add to Cart</button>
+                    <button type="button">Shop Now</button>
+                    <button type="button">Add to Cart</button>
                 </div>
-            </div>
+            </article>
 
             <!-- ITEM-3 -->
-            <div class="card">
+            <article class="card" data-product-id="fresh-avocados" data-price="4.99">
                 <img
                     src="assets/avocado.jpeg"
-                    srcset="assets/avocado.jpeg 500w, assets/avocado.jpeg 800w"
-                    sizes="(max-width: 768px) 100vw, 220px"
                     alt="Fresh Avocados"
                     class="img-placeholder"
+                    loading="lazy"
+                    decoding="async"
                 >
                 <h3>Fresh Avocados</h3>
+                <p class="product-price">$4.99 / item</p>
                 <p>Creamy avocados packed with natural goodness.</p>
-                <div class="stars">★★★★☆</div>
+                <div class="stars" role="img" aria-label="4 out of 5 stars">★★★★☆</div>
                 <div class="card-button">
-                    <button>Shop Now</button>
-                    <button>Add to Cart</button>
+                    <button type="button">Shop Now</button>
+                    <button type="button">Add to Cart</button>
                 </div>
-            </div>
+            </article>
 
             <!-- ITEM-4 -->
-            <div class="card">
+            <article class="card" data-product-id="fresh-broccoli" data-price="2.99">
                 <img
                     src="assets/brocoli.jpeg"
-                    srcset="assets/brocoli.jpeg 500w, assets/brocoli.jpeg 800w"
-                    sizes="(max-width: 768px) 100vw, 220px"
                     alt="Fresh Broccoli"
                     class="img-placeholder"
+                    loading="lazy"
+                    decoding="async"
                 >
                 <h3>Fresh Broccoli</h3>
+                <p class="product-price">$2.99 / item</p>
                 <p>Nutritious broccoli for balanced, vibrant dishes.</p>
-                <div class="stars">★★★★☆</div>
+                <div class="stars" role="img" aria-label="4 out of 5 stars">★★★★☆</div>
                 <div class="card-button">
-                    <button>Shop Now</button>
-                    <button>Add to Cart</button>
+                    <button type="button">Shop Now</button>
+                    <button type="button">Add to Cart</button>
                 </div>
-            </div>
+            </article>
 
             <!-- ITEM-5 -->
-            <div class="card">
+            <article class="card" data-product-id="fresh-peppers" data-price="3.99">
                 <img
                     src="assets/pepper.jpeg"
-                    srcset="assets/pepper.jpeg 500w, assets/pepper.jpeg 800w"
-                    sizes="(max-width: 768px) 100vw, 220px"
                     alt="Fresh Peppers"
                     class="img-placeholder"
+                    loading="lazy"
+                    decoding="async"
                 >
                 <h3>Fresh Peppers</h3>
+                <p class="product-price">$3.99 / item</p>
                 <p>Colorful peppers for flavor and freshness.</p>
-                <div class="stars">★★★★☆</div>
+                <div class="stars" role="img" aria-label="4 out of 5 stars">★★★★☆</div>
                 <div class="card-button">
-                    <button>Shop Now</button>
-                    <button>Add to Cart</button>
+                    <button type="button">Shop Now</button>
+                    <button type="button">Add to Cart</button>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
     <!-- 3. TESTIMONIAL REVIEW SECTION -->
-    <section class="testimonials" id="testimonials">
-        <div class="testimonial-card" aria-label="Customer reviews">
-            <div class="card-tab tab-top-right"></div>
-            <div class="card-tab tab-bottom-left"></div>
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonial-heading">
+        <div class="testimonial-card">
+            <div class="card-tab tab-top-right" aria-hidden="true"></div>
+            <div class="card-tab tab-bottom-left" aria-hidden="true"></div>
 
-            <h2 class="testimonial-heading">What Our Customers Are Saying</h2>
-            <div class="review-viewport" aria-live="polite">
+            <h2 class="testimonial-heading" id="testimonial-heading">What Our Customers Are Saying</h2>
+            <div class="review-viewport">
                 <div class="review-track">
                     <article class="review-slide" aria-hidden="false">
                         <div class="user-profile">
-                            <img class="customer-image" src="assets/client.jpg" alt="Lisa Ray">
+                            <img class="customer-image" src="assets/client.jpg" alt="Lisa Ray" loading="lazy" decoding="async">
                             <h3>Lisa Ray</h3>
                             <span>Product Manager</span>
                             <small>Avent Humanity</small>
@@ -251,7 +257,7 @@
 
                     <article class="review-slide" aria-hidden="true">
                         <div class="user-profile">
-                            <img class="customer-image" src="assets/review-james.jpg" alt="James Miller">
+                            <img class="customer-image" src="assets/review-james.jpg" alt="James Miller" loading="lazy" decoding="async">
                             <h3>James Miller</h3>
                             <span>Home Chef</span>
                             <small>Customer since 2024</small>
@@ -264,7 +270,7 @@
 
                     <article class="review-slide" aria-hidden="true">
                         <div class="user-profile">
-                            <img class="customer-image" src="assets/review-sofia.jpg" alt="Sofia Patel">
+                            <img class="customer-image" src="assets/review-sofia.jpg" alt="Sofia Patel" loading="lazy" decoding="async">
                             <h3>Sofia Patel</h3>
                             <span>Busy Parent</span>
                             <small>Happy customer</small>
@@ -280,11 +286,12 @@
         </div>
     </section>
 
+    </main>
     <footer id="contacts" class="footer" role="contentinfo">
     <div class="footer-container">
         <!-- Brand & Description -->
         <div class="footer-col brand-col">
-            <a href="/" class="footer-logo">FreshStore</a>
+            <a href="#home" class="footer-logo">FreshStore</a>
             <p class="brand-tagline">
                 Delivering fresh, organic produce straight to your doorstep daily.
             </p>
@@ -294,10 +301,10 @@
         <nav class="footer-col" aria-label="Footer Navigation">
             <h3 class="footer-heading">Quick Links</h3>
             <ul class="footer-links">
-                <li><a href="/shop">Shop</a></li>
-                <li><a href="/about">About Us</a></li>
-                <li><a href="/faq">FAQ</a></li>
-                <li><a href="/shipping">Shipping Policy</a></li>
+                <li><a href="#categories">Shop</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="cart.html">Shopping cart</a></li>
+                <li><a href="#contacts">Contact</a></li>
             </ul>
         </nav>
 
@@ -338,9 +345,9 @@
     <div class="footer-bottom">
         <p>&copy; 2026 FreshStore, Inc. All rights reserved.</p>
         <div class="legal-links">
-            <a href="/privacy">Privacy Policy</a>
+            <a href="mailto:hello@freshstore.com">Email us</a>
             <span>•</span>
-            <a href="/terms">Terms of Service</a>
+            <a href="tel:+15551234567">Call us</a>
         </div>
     </div>
 </footer>

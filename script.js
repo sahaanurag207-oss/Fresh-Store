@@ -4,6 +4,7 @@ const navLinks = document.querySelectorAll('.nav-links a');
 const searchInput = document.querySelector('.search-box input');
 const searchButton = document.querySelector('.search-box button');
 const productCards = document.querySelectorAll('.product-row .card');
+const searchStatus = document.querySelector('#search-status');
 const cartBadge = document.querySelector('.cart-badge');
 const heroImages = document.querySelectorAll('.hero-image');
 const heroPaginationButtons = document.querySelectorAll('.hero-pagination button');
@@ -13,7 +14,18 @@ const testimonialCard = document.querySelector('.testimonial-card');
 const reviewTrack = document.querySelector('.review-track');
 const reviewSlides = document.querySelectorAll('.review-slide');
 
-let cartCount = 0;
+const cartStorageKey = 'freshStoreCart';
+const savedCart = JSON.parse(window.localStorage.getItem(cartStorageKey) ?? '[]');
+const savedCartCount = savedCart.reduce((count, item) => count + item.quantity, 0);
+
+if (cartBadge) {
+    cartBadge.textContent = String(savedCartCount);
+    cartBadge.hidden = savedCartCount === 0;
+    document.querySelector('#cartbtn')?.setAttribute(
+        'aria-label',
+        `Shopping cart, ${savedCartCount} ${savedCartCount === 1 ? 'item' : 'items'}`
+    );
+}
 
 if (
     heroImages.length &&
@@ -95,13 +107,22 @@ navLinks.forEach(link => {
 
 function filterProducts() {
     const query = searchInput?.value.trim().toLowerCase() ?? '';
+    let visibleCount = 0;
 
     productCards.forEach(card => {
-        const title = card.querySelector('h3')?.textContent ?? '';
-        const description = card.querySelector('p')?.textContent ?? '';
-        const cardText = `${title} ${description}`.toLowerCase();
-        card.hidden = !cardText.includes(query);
+        const matches = card.textContent.toLowerCase().includes(query);
+        card.hidden = !matches;
+        visibleCount += Number(matches);
     });
+
+    if (searchStatus) {
+        searchStatus.hidden = query.length === 0;
+        searchStatus.textContent = !query
+            ? ''
+            : visibleCount
+                ? `${visibleCount} ${visibleCount === 1 ? 'product' : 'products'} found.`
+                : `No products found for “${searchInput.value.trim()}”.`;
+    }
 }
 
 searchInput?.addEventListener('input', filterProducts);
@@ -119,12 +140,36 @@ productCards.forEach(card => {
     const addToCartButton = buttons[1];
 
     addToCartButton?.addEventListener('click', () => {
-        cartCount++;
+        const cart = JSON.parse(window.localStorage.getItem(cartStorageKey) ?? '[]');
+        const productId = card.dataset.productId;
+        const existingItem = cart.find(item => item.id === productId);
 
+        if (!productId) {
+            throw new Error('A product is missing its cart ID.');
+        }
+
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cart.push({
+                id: productId,
+                name: card.querySelector('h3')?.textContent?.trim() ?? '',
+                price: Number(card.dataset.price),
+                image: card.querySelector('img')?.getAttribute('src') ?? '',
+                quantity: 1
+            });
+        }
+
+        window.localStorage.setItem(cartStorageKey, JSON.stringify(cart));
+        const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
         if (cartBadge) {
             cartBadge.textContent = String(cartCount);
-            cartBadge.hidden = false;
+            cartBadge.hidden = cartCount === 0;
         }
+        document.querySelector('#cartbtn')?.setAttribute(
+            'aria-label',
+            `Shopping cart, ${cartCount} ${cartCount === 1 ? 'item' : 'items'}`
+        );
 
         const originalText = addToCartButton.textContent;
         addToCartButton.textContent = 'Added!';
@@ -137,6 +182,6 @@ productCards.forEach(card => {
     });
 
     shopNowButton?.addEventListener('click', () => {
-        document.querySelector('#contacts')?.scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('#categories')?.scrollIntoView({ behavior: 'smooth' });
     });
 });
