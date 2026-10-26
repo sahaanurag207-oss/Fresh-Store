@@ -156,17 +156,107 @@
 }
 
 .checkout-item {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 10px;
     color: #657060;
     font-size: 13px;
 }
 
-.checkout-item strong {
-    flex: 0 0 auto;
+.checkout-item-image,
+.quick-add-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: #f1f5ee;
+    object-fit: cover;
+}
+
+.checkout-item-name {
+    display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
     color: #263126;
     font-weight: 600;
+}
+
+.checkout-item-details {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+}
+
+.checkout-item-unit-price {
+    color: #657060;
+    font-size: 11px;
+}
+
+.checkout-quantity-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    margin-top: 3px;
+}
+
+.checkout-quantity-button {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid #cfe3c5;
+    border-radius: 50%;
+    background: #fff;
+    color: #286c1e;
+    cursor: pointer;
+}
+
+.checkout-quantity-button:hover:not(:disabled) {
+    background: #eff7eb;
+}
+
+.checkout-quantity-button:disabled {
+    color: #aab3a5;
+    cursor: not-allowed;
+}
+
+.checkout-quantity-button:focus-visible,
+.checkout-remove-button:focus-visible {
+    outline: 2px solid #62a943;
+    outline-offset: 2px;
+}
+
+.checkout-quantity {
+    min-width: 16px;
+    color: #263126;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.checkout-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.checkout-item-actions strong {
+    color: #263126;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.checkout-remove-button {
+    padding: 2px 0;
+    border: 0;
+    background: transparent;
+    color: #9b433b;
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 /* Quick Add Section */
@@ -197,14 +287,20 @@
 }
 
 .quick-add-card {
-    display: flex;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
+    gap: 9px;
     padding: 8px 12px;
     border: 1px solid #e2ece0;
     border-radius: 8px;
     background: #fbfdfa;
     transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.quick-add-image {
+    width: 44px;
+    height: 44px;
 }
 
 .quick-add-card:hover {
@@ -215,6 +311,7 @@
 .quick-add-info {
     display: flex;
     flex-direction: column;
+    min-width: 0;
     gap: 2px;
 }
 
@@ -222,6 +319,7 @@
     color: #263126;
     font-size: 13px;
     font-weight: 600;
+    overflow-wrap: anywhere;
 }
 
 .quick-add-price {
@@ -234,7 +332,8 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 5px 11px;
+    min-height: 36px;
+    padding: 5px 10px;
     border: 1px solid #c2dec0;
     border-radius: 16px;
     background: #ffffff;
@@ -311,5 +410,15 @@
 
     .form-field.full-width {
         grid-column: auto;
+    }
+
+    .checkout-item {
+        grid-template-columns: 42px minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    .checkout-item-image {
+        width: 42px;
+        height: 42px;
     }
 }

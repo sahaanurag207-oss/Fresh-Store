@@ -24,9 +24,9 @@ const paymentDisclaimer = document.querySelector('#payment-disclaimer');
 
 // Suggested grab-and-go products
 const quickAddItems = [
-    { id: 'fresh-lemons', name: 'Fresh Lemons (3 pcs)', price: 1.49 },
-    { id: 'baby-spinach', name: 'Baby Spinach (250g)', price: 2.19 },
-    { id: 'organic-bananas', name: 'Organic Bananas (1 bunch)', price: 1.89 }
+    { id: 'fresh-lemons', name: 'Fresh Lemons (3 pcs)', price: 1.49, image: 'assets/fresh lemons.jpg' },
+    { id: 'baby-spinach', name: 'Baby Spinach (250g)', price: 2.19, image: 'assets/baby spinach.jpg' },
+    { id: 'organic-bananas', name: 'Organic Bananas (1 bunch)', price: 1.89, image: 'assets/organic banana.jpg' }
 ];
 
 let finalTotal = 0;
@@ -38,6 +38,12 @@ function renderQuickAdd() {
     quickAddItems.forEach(item => {
         const card = document.createElement('div');
         card.className = 'quick-add-card';
+
+        const image = document.createElement('img');
+        image.className = 'quick-add-image';
+        image.src = item.image;
+        image.alt = '';
+        image.loading = 'lazy';
 
         const info = document.createElement('div');
         info.className = 'quick-add-info';
@@ -61,7 +67,7 @@ function renderQuickAdd() {
             addItemToCart(item);
         });
 
-        card.append(info, addBtn);
+        card.append(image, info, addBtn);
         quickAddList.append(card);
     });
 }
@@ -75,6 +81,7 @@ function addItemToCart(item) {
             id: item.id,
             name: item.name,
             price: item.price,
+            image: item.image,
             quantity: 1
         });
     }
@@ -84,6 +91,10 @@ function addItemToCart(item) {
 
     // Re-render summary, delivery fee, and COD eligibility
     updateOrderView();
+}
+
+function saveCart() {
+    window.localStorage.setItem(cartStorageKey, JSON.stringify(cart));
 }
 
 function updateOrderView() {
@@ -96,13 +107,65 @@ function updateOrderView() {
         const row = document.createElement('div');
         row.className = 'checkout-item';
 
+        const image = document.createElement('img');
+        image.className = 'checkout-item-image';
+        image.src = item.image || 'assets/Fresh_veg.jpeg';
+        image.alt = '';
+        image.loading = 'lazy';
+
         const itemLabel = document.createElement('span');
-        itemLabel.textContent = `${item.name} × ${item.quantity}`;
+        itemLabel.className = 'checkout-item-name';
+        itemLabel.textContent = item.name;
 
         const itemTotal = document.createElement('strong');
         itemTotal.textContent = currency.format(item.price * item.quantity);
 
-        row.append(itemLabel, itemTotal);
+        const details = document.createElement('div');
+        details.className = 'checkout-item-details';
+        const unitPrice = document.createElement('span');
+        unitPrice.className = 'checkout-item-unit-price';
+        unitPrice.textContent = `${currency.format(item.price)} each`;
+
+        const quantityControls = document.createElement('div');
+        quantityControls.className = 'checkout-quantity-controls';
+        quantityControls.setAttribute('aria-label', `Quantity for ${item.name}`);
+
+        const decreaseButton = document.createElement('button');
+        decreaseButton.type = 'button';
+        decreaseButton.className = 'checkout-quantity-button';
+        decreaseButton.dataset.action = 'decrease';
+        decreaseButton.dataset.productId = item.id;
+        decreaseButton.disabled = item.quantity <= 1;
+        decreaseButton.setAttribute('aria-label', `Decrease ${item.name} quantity`);
+        decreaseButton.innerHTML = '<i class="fa-solid fa-minus" aria-hidden="true"></i>';
+
+        const quantity = document.createElement('output');
+        quantity.className = 'checkout-quantity';
+        quantity.setAttribute('aria-label', 'Quantity');
+        quantity.textContent = String(item.quantity);
+
+        const increaseButton = document.createElement('button');
+        increaseButton.type = 'button';
+        increaseButton.className = 'checkout-quantity-button';
+        increaseButton.dataset.action = 'increase';
+        increaseButton.dataset.productId = item.id;
+        increaseButton.setAttribute('aria-label', `Increase ${item.name} quantity`);
+        increaseButton.innerHTML = '<i class="fa-solid fa-plus" aria-hidden="true"></i>';
+
+        quantityControls.append(decreaseButton, quantity, increaseButton);
+        details.append(itemLabel, unitPrice, quantityControls);
+
+        const actions = document.createElement('div');
+        actions.className = 'checkout-item-actions';
+        const removeButton = document.createElement('button');
+        removeButton.type = 'button';
+        removeButton.className = 'checkout-remove-button';
+        removeButton.dataset.action = 'remove';
+        removeButton.dataset.productId = item.id;
+        removeButton.textContent = 'Remove';
+        actions.append(itemTotal, removeButton);
+
+        row.append(image, details, actions);
         checkoutItems.append(row);
     });
 
@@ -147,6 +210,37 @@ function updateOrderView() {
         }
     }
 }
+
+checkoutItems.addEventListener('click', event => {
+    const button = event.target.closest('button[data-action]');
+    if (!button) {
+        return;
+    }
+
+    const item = cart.find(cartItem => cartItem.id === button.dataset.productId);
+    if (!item) {
+        return;
+    }
+
+    if (button.dataset.action === 'increase') {
+        item.quantity += 1;
+    } else if (button.dataset.action === 'decrease' && item.quantity > 1) {
+        item.quantity -= 1;
+    } else if (button.dataset.action === 'remove') {
+        cart.splice(cart.indexOf(item), 1);
+    } else {
+        return;
+    }
+
+    if (cart.length === 0) {
+        window.localStorage.removeItem(cartStorageKey);
+        window.location.href = 'cart.html';
+        return;
+    }
+
+    saveCart();
+    updateOrderView();
+});
 
 // Redirect if cart is empty, otherwise initialize
 if (!Array.isArray(cart) || cart.length === 0) {

@@ -46,7 +46,7 @@ function renderCart(cart) {
 
         const image = document.createElement('img');
         image.className = 'cart-item-image';
-        image.src = item.image;
+        image.src = item.image || 'assets/Fresh_veg.jpeg';
         image.alt = item.name;
 
         const info = document.createElement('div');
