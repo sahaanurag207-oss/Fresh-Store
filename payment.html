@@ -29,11 +29,6 @@
             </a>
         </div>
 
-        <p class="demo-notice">
-            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-            Demo checkout only. No payment will be processed and no card details are requested.
-        </p>
-
         <div class="cart-layout payment-layout">
             <section class="cart-panel payment-panel" aria-labelledby="delivery-heading">
                 <form id="payment-form">
@@ -69,21 +64,34 @@
 
                     <fieldset class="checkout-section payment-method">
                         <legend>Payment method</legend>
-                        <label class="payment-option">
-                            <input type="radio" name="paymentMethod" value="cash-on-delivery" checked>
+
+                        <label class="payment-option" id="upi-option-label">
+                            <input type="radio" name="paymentMethod" value="upi" required>
+                            <span class="payment-option-icon" aria-hidden="true">
+                                <i class="fa-solid fa-qrcode"></i>
+                            </span>
+                            <span>
+                                <strong>UPI Payment</strong>
+                                <small>Pay instantly via Google Pay, PhonePe, Paytm, or BHIM.</small>
+                            </span>
+                        </label>
+
+                        <label class="payment-option" id="cod-option-label">
+                            <input type="radio" name="paymentMethod" value="cash-on-delivery" required>
                             <span class="payment-option-icon" aria-hidden="true">
                                 <i class="fa-solid fa-money-bill-wave"></i>
                             </span>
                             <span>
                                 <strong>Cash on delivery</strong>
-                                <small>Pay when your groceries arrive.</small>
+                                <small id="cod-note">Pay when your groceries arrive (minimum order $10.01).</small>
                             </span>
                         </label>
-                        <p class="payment-disclaimer">Online card payments are not enabled for this demo store.</p>
+
+                        <p class="payment-disclaimer" id="payment-disclaimer" role="alert"></p>
                     </fieldset>
 
                     <button class="place-order-button" type="submit">
-                        Place demo order
+                        Place Order
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </button>
                 </form>
@@ -92,8 +100,8 @@
                     <div class="confirmation-icon" aria-hidden="true">
                         <i class="fa-solid fa-check"></i>
                     </div>
-                    <h2>Demo order placed!</h2>
-                    <p>Your order is confirmed for this demo. No payment was taken.</p>
+                    <h2>Order placed!</h2>
+                    <p>Your order is confirmed. The order is on the way.</p>
                     <a class="primary-link" href="index.html#categories">Continue shopping</a>
                 </div>
             </section>
