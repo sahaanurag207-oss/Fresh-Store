@@ -190,12 +190,12 @@ input {
   border: none;
   color: rgb(14, 14, 14);
   font-size: 12px;
-  width: 110px;
+  width: 70px;
   transition: width 0.25s ease-in-out;
 }
 
 .search-box:focus-within input {
-  width: 160px;
+  width: 100px;
 }
 
 .search-box input:focus-visible,

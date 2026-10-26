@@ -169,6 +169,88 @@
     font-weight: 600;
 }
 
+/* Quick Add Section */
+.quick-add-section {
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e9eee6;
+}
+
+.quick-add-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 10px;
+    color: #2e5520;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.quick-add-title i {
+    color: #4a9630;
+    font-size: 13px;
+}
+
+.quick-add-list {
+    display: grid;
+    gap: 8px;
+}
+
+.quick-add-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border: 1px solid #e2ece0;
+    border-radius: 8px;
+    background: #fbfdfa;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.quick-add-card:hover {
+    border-color: #b9d8b1;
+    background: #f5faf3;
+}
+
+.quick-add-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.quick-add-name {
+    color: #263126;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.quick-add-price {
+    color: #557849;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.quick-add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 11px;
+    border: 1px solid #c2dec0;
+    border-radius: 16px;
+    background: #ffffff;
+    color: #286c1e;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.quick-add-btn:hover {
+    background: #286c1e;
+    color: #ffffff;
+    border-color: #286c1e;
+}
+
 .payment-summary .delivery-note {
     margin-bottom: 18px;
 }
