@@ -182,6 +182,6 @@ productCards.forEach(card => {
     });
 
     shopNowButton?.addEventListener('click', () => {
-        document.querySelector('#categories')?.scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('#contacts')?.scrollIntoView({ behavior: 'smooth' });
     });
 });

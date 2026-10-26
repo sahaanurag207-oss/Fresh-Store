@@ -11,6 +11,7 @@ A clean, responsive e-commerce grocery landing page built with pure semantic HTM
 * **Shop by Category:** A 5-card product showcase with category titles, ratings, descriptions, dual pill action buttons (*Shop Now* / *Add to Cart*), and a faint background watermark text.
 * **Shopping Cart:** Cart items persist in local storage and can be reviewed, quantity-adjusted, or removed on the dedicated cart page, with an order subtotal and delivery estimate.
 * **Demo Checkout:** A delivery details form with a cash-on-delivery option and an order summary; no card details are collected and no payment is processed.
+* **Demo Content:** Sample offers, store metrics, ratings, testimonials, and draft policy pages are clearly labeled and must be replaced or approved before a live launch.
 * **Testimonials Card:** A centered client review card featuring an avatar placeholder, reviewer details, star rating, and distinct decorative corner tabs.
 * **Responsive Layout:** Adapts smoothly across desktop, tablet, and mobile screen sizes using CSS Flexbox.
 
@@ -27,4 +28,7 @@ A clean, responsive e-commerce grocery landing page built with pure semantic HTM
 ├── payment.html      # Demo checkout page
 ├── payment.css       # Demo checkout styling
 ├── payment.js        # Checkout summary and demo confirmation
+├── policy.html       # Shipping and delivery policy draft
+├── refund.html       # Refund and returns policy draft
+├── terms.html        # Terms of service draft
 └── README.md         # Project documentation

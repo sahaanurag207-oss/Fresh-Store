@@ -748,8 +748,8 @@ input {
 }
 
 .user-profile small {
-  font-size: 9px;
-  color: #aaa;
+  font-size: 10px;
+  color: #596354;
 }
 
 .user-quote {
@@ -858,7 +858,7 @@ input {
     align-items: center;
     gap: 1rem;
     font-size: 0.85rem;
-    color: #888888;
+    color: #d1d0d0;
 }
 
 .legal-links {
@@ -1000,7 +1000,6 @@ input {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-image,
-  .badge,
   .review-track {
     transition: none;
     animation: none;
@@ -1050,10 +1049,6 @@ input {
     padding: 18px 16px 26px;
   }
 
-  .hero-pagination {
-    gap: 0;
-  }
-
   .hero-body {
     gap: 20px;
   }
@@ -1080,5 +1075,9 @@ input {
   .badge-customers {
     right: 0;
     top: 12px;
+  }
+
+  .hero-pagination {
+    gap: 0;
   }
 }

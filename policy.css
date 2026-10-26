@@ -1,0 +1,30 @@
+.policy-title {
+    margin-bottom: 24px;
+    color: #263126;
+    font-size: clamp(28px, 4vw, 38px);
+}
+
+.policy-panel {
+    max-width: 760px;
+    padding: clamp(20px, 4vw, 32px);
+    border: 1px solid #e8eee4;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(35, 74, 25, 0.05);
+    color: #4b5547;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.policy-panel p + p {
+    margin-top: 14px;
+}
+
+.policy-panel .draft-label {
+    color: #8a4c13;
+    font-weight: 700;
+}
+
+.policy-back {
+    margin-top: 24px;
+}

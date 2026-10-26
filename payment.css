@@ -116,13 +116,13 @@
 }
 
 .payment-option small {
-    color: #798274;
+    color: #596354;
     font-size: 12px;
 }
 
 .payment-disclaimer {
     margin-top: 11px;
-    color: #798274;
+    color: #596354;
     font-size: 12px;
 }
 
@@ -136,7 +136,7 @@
     justify-content: space-between;
     border: 0;
     border-radius: 24px;
-    background: #55b616;
+    background: #286c1e;
     color: white;
     font-size: 14px;
     font-weight: 700;
@@ -144,7 +144,7 @@
 }
 
 .place-order-button:hover {
-    background: #438f10;
+    background: #205a1d;
 }
 
 .checkout-items {
@@ -203,9 +203,13 @@
 .order-confirmation p {
     max-width: 340px;
     margin-bottom: 22px;
-    color: #798274;
+    color: #596354;
     font-size: 14px;
     line-height: 1.6;
+}
+
+.order-confirmation .primary-link {
+    color: #fff;
 }
 
 @media (max-width: 760px) {

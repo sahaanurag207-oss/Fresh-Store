@@ -45,7 +45,7 @@ a {
 
 .continue-link,
 .back-link {
-    color: #4a8e31;
+    color: #286c1e;
     font-size: 14px;
     font-weight: 700;
     text-decoration: none;
@@ -73,7 +73,7 @@ a {
 
 .eyebrow {
     margin-bottom: 8px;
-    color: #69a94b;
+    color: #347f21;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.6px;
@@ -164,7 +164,7 @@ a {
 }
 
 .cart-item-price {
-    color: #788176;
+    color: #596354;
     font-size: 13px;
 }
 
@@ -213,7 +213,7 @@ a {
 .remove-item {
     border: 0;
     background: transparent;
-    color: #8a9387;
+    color: #596354;
     font-size: 12px;
     cursor: pointer;
 }
@@ -251,7 +251,7 @@ a {
 
 .empty-cart p {
     margin-bottom: 20px;
-    color: #7d867a;
+    color: #596354;
     font-size: 14px;
     line-height: 1.5;
 }
@@ -263,7 +263,7 @@ a {
     align-items: center;
     justify-content: center;
     border-radius: 24px;
-    background: #55b616;
+    background: #286c1e;
     color: white;
     font-size: 13px;
     font-weight: 700;
@@ -272,7 +272,7 @@ a {
 
 .primary-link:hover,
 .checkout-link:hover:not([aria-disabled="true"]) {
-    background: #438f10;
+    background: #205a1d;
 }
 
 .summary-panel {
@@ -293,7 +293,7 @@ a {
 
 .summary-line {
     margin-bottom: 16px;
-    color: #737d70;
+    color: #596354;
 }
 
 .summary-line strong {
@@ -303,7 +303,7 @@ a {
 
 .delivery-note {
     margin: -4px 0 20px;
-    color: #758270;
+    color: #596354;
     font-size: 12px;
     line-height: 1.5;
 }
@@ -316,7 +316,7 @@ a {
 }
 
 .summary-total strong {
-    color: #347f21;
+    color: #286c1e;
     font-size: 19px;
 }
 
@@ -328,7 +328,7 @@ a {
     align-items: center;
     justify-content: space-between;
     border-radius: 24px;
-    background: #55b616;
+    background: #286c1e;
     color: #fff;
     font-size: 14px;
     font-weight: 700;
@@ -342,7 +342,7 @@ a {
 
 .secure-note {
     margin-top: 18px;
-    color: #788176;
+    color: #596354;
     font-size: 12px;
     text-align: center;
 }
@@ -358,12 +358,12 @@ a {
     justify-content: space-between;
     gap: 16px;
     border-top: 1px solid #e9eee6;
-    color: #798274;
+    color: #596354;
     font-size: 12px;
 }
 
 .cart-footer a {
-    color: #4a8e31;
+    color: #286c1e;
     text-decoration: none;
 }
 
