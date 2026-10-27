@@ -636,7 +636,7 @@ input {
   position: relative;
   background:
     linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
-    url('../assets/testimonials.jpeg') center/cover no-repeat;
+    url('../../assets/testimonials.jpeg') center/cover no-repeat;
   padding: clamp(48px, 8vw, 80px) 20px;
   display: flex;
   justify-content: center;
