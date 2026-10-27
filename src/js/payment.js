@@ -41,7 +41,7 @@ function renderQuickAdd() {
 
         const image = document.createElement('img');
         image.className = 'quick-add-image';
-        image.src = item.image;
+        image.src = `../${item.image}`;
         image.alt = '';
         image.loading = 'lazy';
 
@@ -109,7 +109,8 @@ function updateOrderView() {
 
         const image = document.createElement('img');
         image.className = 'checkout-item-image';
-        image.src = item.image || 'assets/Fresh_veg.jpeg';
+        const imageSource = item.image || 'assets/Fresh_veg.jpeg';
+        image.src = imageSource.startsWith('assets/') ? `../${imageSource}` : imageSource;
         image.alt = '';
         image.loading = 'lazy';
 
@@ -234,7 +235,7 @@ checkoutItems.addEventListener('click', event => {
 
     if (cart.length === 0) {
         window.localStorage.removeItem(cartStorageKey);
-        window.location.href = 'pages/cart.html';
+        window.location.href = 'cart.html';
         return;
     }
 
@@ -244,7 +245,7 @@ checkoutItems.addEventListener('click', event => {
 
 // Redirect if cart is empty, otherwise initialize
 if (!Array.isArray(cart) || cart.length === 0) {
-    window.location.replace('pages/cart.html');
+    window.location.replace('cart.html');
 } else {
     renderQuickAdd();
     updateOrderView();

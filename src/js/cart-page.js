@@ -46,7 +46,8 @@ function renderCart(cart) {
 
         const image = document.createElement('img');
         image.className = 'cart-item-image';
-        image.src = item.image || 'assets/Fresh_veg.jpeg';
+        const imageSource = item.image || 'assets/Fresh_veg.jpeg';
+        image.src = imageSource.startsWith('assets/') ? `../${imageSource}` : imageSource;
         image.alt = item.name;
 
         const info = document.createElement('div');

@@ -20,15 +20,23 @@ A clean, responsive e-commerce grocery landing page built with pure semantic HTM
 ## File Structure
 
 ```text
-├── index.html        # Semantic HTML structure
-├── style.css         # Styling, gradients, layout, and responsiveness
-├── cart.html         # Shopping cart page
-├── cart.css          # Shopping cart page styling
-├── cart-page.js      # Cart rendering and quantity controls
-├── payment.html      # Demo checkout page
-├── payment.css       # Demo checkout styling
-├── payment.js        # Checkout summary and demo confirmation
-├── policy.html       # Shipping and delivery policy draft
-├── refund.html       # Refund and returns policy draft
-├── terms.html        # Terms of service draft
-└── README.md         # Project documentation
+├── index.html
+├── assets/
+├── pages/
+│   ├── cart.html
+│   ├── index.html
+│   ├── payment.html
+│   ├── policy.html
+│   ├── refund.html
+│   └── terms.html
+├── src/
+│   ├── css/
+│   │   ├── cart.css
+│   │   ├── payment.css
+│   │   ├── policy.css
+│   │   └── style.css
+│   └── js/
+│       ├── cart-page.js
+│       ├── payment.js
+│       └── script.js
+└── README.md
