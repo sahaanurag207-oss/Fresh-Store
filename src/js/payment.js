@@ -234,7 +234,7 @@ checkoutItems.addEventListener('click', event => {
 
     if (cart.length === 0) {
         window.localStorage.removeItem(cartStorageKey);
-        window.location.href = 'cart.html';
+        window.location.href = 'pages/cart.html';
         return;
     }
 
@@ -244,7 +244,7 @@ checkoutItems.addEventListener('click', event => {
 
 // Redirect if cart is empty, otherwise initialize
 if (!Array.isArray(cart) || cart.length === 0) {
-    window.location.replace('cart.html');
+    window.location.replace('pages/cart.html');
 } else {
     renderQuickAdd();
     updateOrderView();
