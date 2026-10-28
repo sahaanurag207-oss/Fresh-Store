@@ -346,11 +346,26 @@ if (!Array.isArray(cart) || cart.length === 0) {
             return;
         }
 
-        window.localStorage.removeItem(cartStorageKey);
-        window.localStorage.removeItem(couponStorageKey);
+        const selectedPaymentLabel = selectedPaymentMethod === 'cash-on-delivery'
+            ? 'Cash on delivery'
+            : 'UPI payment';
+        const orderItemCount = cart.reduce((count, item) => count + item.quantity, 0);
+        document.querySelector('#confirmation-reference').textContent =
+            `FS-${Date.now().toString().slice(-8)}`;
+        document.querySelector('#confirmation-item-count').textContent =
+            `${orderItemCount} ${orderItemCount === 1 ? 'item' : 'items'}`;
         document.querySelector('#confirmation-slot').textContent =
             form.elements['deliverySlot'].value;
+        document.querySelector('#confirmation-payment').textContent = selectedPaymentLabel;
+        document.querySelector('#confirmation-total').textContent = currency.format(finalTotal);
+
+        window.localStorage.removeItem(cartStorageKey);
+        window.localStorage.removeItem(couponStorageKey);
         form.hidden = true;
         confirmation.hidden = false;
+        const layout = document.querySelector('.payment-layout');
+        layout.classList.add('order-complete');
+        layout.querySelector('.payment-panel').setAttribute('aria-labelledby', 'confirmation-heading');
+        confirmation.focus();
     });
 }

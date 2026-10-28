@@ -416,13 +416,31 @@
 }
 
 .order-confirmation {
-    min-height: 400px;
-    padding: 30px 12px;
+    min-height: 480px;
+    padding: 44px clamp(12px, 5vw, 48px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+#order-confirmation[hidden] {
+    display: none;
+}
+
+.payment-layout.order-complete {
+    grid-template-columns: minmax(0, 760px);
+    justify-content: center;
+}
+
+.payment-layout.order-complete .payment-summary {
+    display: none;
+}
+
+.order-confirmation:focus {
+    outline: 2px solid #347f21;
+    outline-offset: 4px;
 }
 
 .confirmation-icon {
@@ -438,16 +456,64 @@
 }
 
 .order-confirmation h2 {
-    margin-bottom: 9px;
-    font-size: 22px;
+    margin-bottom: 10px;
+    color: #263126;
+    font-size: clamp(24px, 4vw, 32px);
 }
 
-.order-confirmation p {
+.confirmation-eyebrow {
+    margin-bottom: 8px;
+    color: #347f21;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+}
+
+.order-confirmation .confirmation-message {
     max-width: 340px;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
     color: #596354;
     font-size: 14px;
     line-height: 1.6;
+}
+
+.confirmation-details {
+    width: min(100%, 440px);
+    margin: 0 0 24px;
+    padding: 8px 18px;
+    border: 1px solid #e8eee4;
+    border-radius: 12px;
+    background: #fbfdfa;
+    text-align: left;
+}
+
+.confirmation-details > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e8eee4;
+    font-size: 13px;
+}
+
+.confirmation-details > div:last-child {
+    border-bottom: 0;
+}
+
+.confirmation-details dt {
+    color: #657060;
+}
+
+.confirmation-details dd {
+    margin: 0;
+    color: #263126;
+    font-weight: 700;
+    text-align: right;
+}
+
+.confirmation-details .confirmation-total dd {
+    color: #286c1e;
+    font-size: 16px;
 }
 
 .order-confirmation .primary-link {
@@ -465,6 +531,20 @@
 }
 
 @media (max-width: 520px) {
+    .order-confirmation {
+        min-height: 0;
+        padding: 32px 8px;
+    }
+
+    .confirmation-details {
+        padding: 6px 12px;
+    }
+
+    .confirmation-details > div {
+        gap: 10px;
+        font-size: 12px;
+    }
+
     .cart-main {
         width: calc(100% - 24px);
     }

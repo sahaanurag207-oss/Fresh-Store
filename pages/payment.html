@@ -106,12 +106,42 @@
                     </button>
                 </form>
 
-                <div class="order-confirmation" id="order-confirmation" role="status" hidden>
+                <div
+                    class="order-confirmation"
+                    id="order-confirmation"
+                    aria-labelledby="confirmation-heading"
+                    role="status"
+                    tabindex="-1"
+                    hidden
+                >
                     <div class="confirmation-icon" aria-hidden="true">
                         <i class="fa-solid fa-check"></i>
                     </div>
-                    <h2>Order placed!</h2>
-                    <p>Your demo order is confirmed for <strong id="confirmation-slot"></strong>. No real order or payment has been processed.</p>
+                    <p class="confirmation-eyebrow">CHECKOUT COMPLETE</p>
+                    <h2 id="confirmation-heading">Your demo order is complete</h2>
+                    <p class="confirmation-message">Here is your order summary. This is a demo only; no order has been sent and no payment was processed.</p>
+                    <dl class="confirmation-details">
+                        <div>
+                            <dt>Demo reference</dt>
+                            <dd id="confirmation-reference"></dd>
+                        </div>
+                        <div>
+                            <dt>Items</dt>
+                            <dd id="confirmation-item-count"></dd>
+                        </div>
+                        <div>
+                            <dt>Delivery window</dt>
+                            <dd id="confirmation-slot"></dd>
+                        </div>
+                        <div>
+                            <dt>Payment method</dt>
+                            <dd id="confirmation-payment"></dd>
+                        </div>
+                        <div class="confirmation-total">
+                            <dt>Order total</dt>
+                            <dd id="confirmation-total"></dd>
+                        </div>
+                    </dl>
                     <a class="primary-link" href="../index.html#categories">Continue shopping</a>
                 </div>
             </section>
