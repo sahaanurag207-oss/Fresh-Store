@@ -27,6 +27,17 @@ if (cartBadge) {
     );
 }
 
+function updateAddToCartButton(button, productName, isAdded) {
+    button.textContent = isAdded ? 'Added' : 'Add to Cart';
+    button.classList.toggle('is-added', isAdded);
+    button.setAttribute(
+        'aria-label',
+        isAdded
+            ? `Add another ${productName} to cart. This item is already in your cart.`
+            : `Add ${productName} to cart`
+    );
+}
+
 if (
     heroImages.length &&
     heroPaginationButtons.length === heroImages.length &&
@@ -138,10 +149,19 @@ productCards.forEach(card => {
     const buttons = card.querySelectorAll('.card-button button');
     const shopNowButton = buttons[0];
     const addToCartButton = buttons[1];
+    const productId = card.dataset.productId;
+    const productName = card.querySelector('h3')?.textContent?.trim() ?? '';
+
+    if (addToCartButton && productId) {
+        updateAddToCartButton(
+            addToCartButton,
+            productName,
+            savedCart.some(item => item.id === productId)
+        );
+    }
 
     addToCartButton?.addEventListener('click', () => {
         const cart = JSON.parse(window.localStorage.getItem(cartStorageKey) ?? '[]');
-        const productId = card.dataset.productId;
         const existingItem = cart.find(item => item.id === productId);
 
         if (!productId) {
@@ -171,14 +191,7 @@ productCards.forEach(card => {
             `Shopping cart, ${cartCount} ${cartCount === 1 ? 'item' : 'items'}`
         );
 
-        const originalText = addToCartButton.textContent;
-        addToCartButton.textContent = 'Added!';
-        addToCartButton.disabled = true;
-
-        window.setTimeout(() => {
-            addToCartButton.textContent = originalText;
-            addToCartButton.disabled = false;
-        }, 1200);
+        updateAddToCartButton(addToCartButton, productName, true);
     });
 
     shopNowButton?.addEventListener('click', () => {

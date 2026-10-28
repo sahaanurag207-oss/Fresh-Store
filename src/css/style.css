@@ -631,6 +631,10 @@ input {
   min-width: 44px;
 }
 
+.card-button button.is-added {
+  background-color: #347d0b;
+}
+
 /* ---------------- 3. TESTIMONIALS SECTION ---------------- */
 .testimonials {
   position: relative;
