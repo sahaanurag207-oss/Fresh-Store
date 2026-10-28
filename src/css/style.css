@@ -607,6 +607,17 @@ input {
   font-weight: 700;
 }
 
+.unit-price-comparison {
+  color: #66745f;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.card .unit-price-comparison {
+  display: block;
+  margin-top: 2px;
+}
+
 .card .stars {
   color: #e74c3c;
   font-size: 12px;
@@ -1480,6 +1491,11 @@ input {
   background: rgba(15, 29, 13, 0.42);
 }
 
+.product-detail-dialog::backdrop {
+  background: rgba(15, 29, 13, 0.28);
+  backdrop-filter: blur(3px);
+}
+
 @keyframes drawer-enter {
   from { transform: translateX(35px); opacity: 0.7; }
   to { transform: translateX(0); opacity: 1; }
@@ -1723,6 +1739,79 @@ input {
 }
 
 @media (max-width: 480px) {
+  .hero-image-wrap {
+    width: min(78vw, 320px);
+    height: min(78vw, 320px);
+  }
+
+  .hero-image-wrap .badge-discount {
+    display: flex;
+    top: 10px;
+    left: -8px;
+    width: 58px;
+    height: 58px;
+  }
+
+  .hero-image-wrap .badge-discount small,
+  .hero-image-wrap .badge-discount span {
+    font-size: 8px;
+  }
+
+  .hero-image-wrap .badge-discount strong {
+    font-size: 15px;
+  }
+
+  .hero-image-wrap .badge-customers {
+    display: block;
+    top: 8px;
+    right: -8px;
+    padding: 7px 10px;
+    border-radius: 12px;
+  }
+
+  .hero-image-wrap .badge-customers .avatars {
+    margin-bottom: 2px;
+  }
+
+  .hero-image-wrap .badge-customers .avatars i {
+    font-size: 16px;
+  }
+
+  .hero-image-wrap .badge-customers h3 {
+    font-size: 13px;
+  }
+
+  .hero-image-wrap .badge-customers span,
+  .hero-image-wrap .badge-customers .stars {
+    font-size: 8px;
+  }
+
+  .hero-image-wrap .badge-delivery {
+    display: flex;
+    bottom: 10px;
+    left: -8px;
+    gap: 7px;
+    padding: 6px 10px 6px 7px;
+  }
+
+  .hero-image-wrap .badge-delivery .icon {
+    width: 27px;
+    height: 27px;
+    font-size: 12px;
+  }
+
+  .hero-image-wrap .badge-delivery h4 {
+    font-size: 10px;
+  }
+
+  .hero-image-wrap .badge-delivery p {
+    font-size: 8px;
+  }
+
+  .hero-image-wrap .badge {
+    animation: none;
+  }
+
   .promo-banner {
     text-align: left;
   }

@@ -6,7 +6,7 @@ A clean, responsive e-commerce grocery landing page built with pure semantic HTM
 
 ## Features
 
-* **Storefront Discovery:** Includes live product suggestions, category filters, price/popularity/freshness sorting, package-size pricing, stock and freshness labels, and quick product details.
+* **Storefront Discovery:** Includes live product suggestions, category filters, price/popularity/freshness sorting, package-size pricing with per-kilogram comparisons for weight-based options, explicit per-piece/head prices, stock and freshness labels, and quick product details.
 * **Persistent Cart:** Product cards have inline quantity controls; the cart icon opens a slide-over cart with quantity controls, delivery totals, and free-delivery progress. Cart items persist in local storage and remain available on the full cart and checkout pages.
 * **Promotions & Delivery Demo:** The `FRESH30` code applies 30% off eligible $20+ checkout subtotals (maximum $10). Sample ZIP coverage and delivery windows are demonstrations only and are not connected to a live delivery service.
 * **Vibrant Hero Section:** Features a softened light background, pill-style navigation with search, promotional headline, call-to-action button, floating informational badges (e.g., *UPTO 30% Off*, *Fast Delivery*, and *230+ Happy Customers*), and an image carousel with automatic rotation and clickable pagination.

@@ -35,16 +35,42 @@ function getProductVariant(card) {
     const option = select?.selectedOptions[0];
     const baseName = card.querySelector('h3')?.textContent?.trim() ?? '';
     const label = option?.textContent?.trim() ?? '';
+    const price = Number(option?.dataset.price ?? card.dataset.price);
     return {
         id: `${card.dataset.productId}::${option?.value ?? 'single'}`,
         name: label ? `${baseName} (${label})` : baseName,
         variant: option?.value ?? 'single',
         label,
-        price: Number(option?.dataset.price ?? card.dataset.price),
+        price,
+        unitPricePerKg: getPricePerKilogram(price, label),
         image: card.querySelector('img')?.getAttribute('src') ?? '',
         baseProductId: card.dataset.productId,
         stock: Number(card.dataset.stock)
     };
+}
+
+function getPricePerKilogram(price, label) {
+    const weight = label.match(/(\d+(?:\.\d+)?)\s*(g|kg)\b/i);
+    if (!weight) {
+        return null;
+    }
+
+    const amount = Number(weight[1]);
+    const kilograms = weight[2].toLowerCase() === 'g' ? amount / 1000 : amount;
+    return price / kilograms;
+}
+
+function renderProductPrice(card) {
+    const product = getProductVariant(card);
+    const priceElement = card.querySelector('.product-price');
+    priceElement.textContent = `${currency.format(product.price)} / ${product.label}`;
+
+    if (product.unitPricePerKg !== null) {
+        const comparison = document.createElement('span');
+        comparison.className = 'unit-price-comparison';
+        comparison.textContent = `${currency.format(product.unitPricePerKg)}/kg`;
+        priceElement.append(' · ', comparison);
+    }
 }
 
 function getBaseProductId(item) {
@@ -89,6 +115,7 @@ function migrateLegacyProducts() {
         item.baseProductId = card.dataset.productId;
         item.variant = option.value;
         item.label = label;
+        item.unitPricePerKg = getPricePerKilogram(Number(item.price), label);
         item.name = `${productName} (${label})`;
         item.image = card.querySelector('img').getAttribute('src');
         item.stock = Number(card.dataset.stock);
@@ -124,6 +151,7 @@ function addProduct(card) {
         item.baseProductId = product.baseProductId;
         item.variant ??= product.variant;
         item.label ??= product.label;
+        item.unitPricePerKg = product.unitPricePerKg;
         item.stock = product.stock;
     } else {
         item = { ...product, quantity: 1 };
@@ -170,8 +198,7 @@ function renderProductQuantities() {
                     : `Increase ${card.querySelector('h3')?.textContent ?? 'product'} quantity`
             );
         }
-        card.querySelector('.product-price').textContent =
-            `${currency.format(getProductVariant(card).price)} / ${getProductVariant(card).label}`;
+        renderProductPrice(card);
     });
 }
 
@@ -199,7 +226,14 @@ function renderDrawer() {
         const name = document.createElement('strong');
         name.textContent = item.name;
         const unit = document.createElement('span');
-        unit.textContent = `${currency.format(item.price)} each`;
+        unit.textContent = `${currency.format(item.price)} / ${item.label ?? 'item'}`;
+        const unitPricePerKg = item.unitPricePerKg ?? getPricePerKilogram(item.price, item.label ?? '');
+        if (unitPricePerKg !== null) {
+            const comparison = document.createElement('small');
+            comparison.className = 'unit-price-comparison';
+            comparison.textContent = `${currency.format(unitPricePerKg)}/kg`;
+            unit.append(' · ', comparison);
+        }
         details.append(name, unit);
 
         const controls = document.createElement('div');

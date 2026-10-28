@@ -15,6 +15,17 @@ const deliveryProgressText = document.querySelector('#cart-delivery-progress');
 const freeDeliveryThreshold = 35;
 const deliveryFeeAmount = 4.99;
 
+function getPricePerKilogram(price, label) {
+    const weight = label.match(/(\d+(?:\.\d+)?)\s*(g|kg)\b/i);
+    if (!weight) {
+        return null;
+    }
+
+    const amount = Number(weight[1]);
+    const kilograms = weight[2].toLowerCase() === 'g' ? amount / 1000 : amount;
+    return price / kilograms;
+}
+
 function readCart() {
     const cart = JSON.parse(window.localStorage.getItem(cartStorageKey) ?? '[]');
 
@@ -66,6 +77,13 @@ function renderCart(cart) {
         const price = document.createElement('p');
         price.className = 'cart-item-price';
         price.textContent = `${currency.format(item.price)} / ${item.label ?? 'item'}`;
+        const unitPricePerKg = item.unitPricePerKg ?? getPricePerKilogram(item.price, item.label ?? '');
+        if (unitPricePerKg !== null) {
+            const comparison = document.createElement('small');
+            comparison.className = 'unit-price-comparison';
+            comparison.textContent = `${currency.format(unitPricePerKg)}/kg`;
+            price.append(' · ', comparison);
+        }
 
         const quantityControls = document.createElement('div');
         quantityControls.className = 'quantity-controls';

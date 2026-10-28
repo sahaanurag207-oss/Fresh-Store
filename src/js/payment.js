@@ -41,6 +41,17 @@ const quickAddItems = [
 
 let finalTotal = 0;
 
+function getPricePerKilogram(price, label) {
+    const weight = label.match(/(\d+(?:\.\d+)?)\s*(g|kg)\b/i);
+    if (!weight) {
+        return null;
+    }
+
+    const amount = Number(weight[1]);
+    const kilograms = weight[2].toLowerCase() === 'g' ? amount / 1000 : amount;
+    return price / kilograms;
+}
+
 function renderQuickAdd() {
     if (!quickAddList) return;
     quickAddList.innerHTML = '';
@@ -142,6 +153,13 @@ function updateOrderView() {
         const unitPrice = document.createElement('span');
         unitPrice.className = 'checkout-item-unit-price';
         unitPrice.textContent = `${currency.format(item.price)} / ${item.label ?? 'item'}`;
+        const unitPricePerKg = item.unitPricePerKg ?? getPricePerKilogram(item.price, item.label ?? '');
+        if (unitPricePerKg !== null) {
+            const comparison = document.createElement('small');
+            comparison.className = 'unit-price-comparison';
+            comparison.textContent = `${currency.format(unitPricePerKg)}/kg`;
+            unitPrice.append(' · ', comparison);
+        }
 
         const quantityControls = document.createElement('div');
         quantityControls.className = 'checkout-quantity-controls';

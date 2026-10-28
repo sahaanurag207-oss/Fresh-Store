@@ -248,6 +248,11 @@
     font-size: 11px;
 }
 
+.checkout-item-unit-price .unit-price-comparison {
+    color: #71806d;
+    font-weight: 600;
+}
+
 .checkout-quantity-controls {
     display: inline-flex;
     align-items: center;
