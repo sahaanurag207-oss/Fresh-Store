@@ -11,6 +11,9 @@ const deliveryElement = document.querySelector('#delivery');
 const deliveryNoteElement = document.querySelector('#delivery-note');
 const totalElement = document.querySelector('#total');
 const checkoutLink = document.querySelector('#checkout-link');
+const deliveryProgressText = document.querySelector('#cart-delivery-progress');
+const freeDeliveryThreshold = 35;
+const deliveryFeeAmount = 4.99;
 
 function readCart() {
     const cart = JSON.parse(window.localStorage.getItem(cartStorageKey) ?? '[]');
@@ -25,6 +28,12 @@ function readCart() {
 function saveCart(cart) {
     window.localStorage.setItem(cartStorageKey, JSON.stringify(cart));
     renderCart(cart);
+}
+
+function getProductTotalQuantity(cart, productId) {
+    return cart
+        .filter(item => (item.baseProductId ?? item.id.split('::')[0]) === productId)
+        .reduce((count, item) => count + item.quantity, 0);
 }
 
 function renderCart(cart) {
@@ -56,7 +65,7 @@ function renderCart(cart) {
         name.textContent = item.name;
         const price = document.createElement('p');
         price.className = 'cart-item-price';
-        price.textContent = `${currency.format(item.price)} each`;
+        price.textContent = `${currency.format(item.price)} / ${item.label ?? 'item'}`;
 
         const quantityControls = document.createElement('div');
         quantityControls.className = 'quantity-controls';
@@ -76,6 +85,8 @@ function renderCart(cart) {
         increaseButton.type = 'button';
         increaseButton.dataset.action = 'increase';
         increaseButton.dataset.productId = item.id;
+        increaseButton.disabled = Number(item.stock) > 0 &&
+            getProductTotalQuantity(cart, item.baseProductId ?? item.id.split('::')[0]) >= Number(item.stock);
         increaseButton.setAttribute('aria-label', `Increase ${item.name} quantity`);
         increaseButton.innerHTML = '<i class="fa-solid fa-plus" aria-hidden="true"></i>';
 
@@ -100,15 +111,25 @@ function renderCart(cart) {
         cartItemsElement.append(row);
     });
 
-    const delivery = !hasItems || subtotal >= 35 ? 0 : 4.99;
+    const delivery = !hasItems || subtotal >= freeDeliveryThreshold ? 0 : deliveryFeeAmount;
+    const remaining = Math.max(0, freeDeliveryThreshold - subtotal);
     subtotalElement.textContent = currency.format(subtotal);
     deliveryElement.textContent = hasItems && delivery ? currency.format(delivery) : 'Free';
     totalElement.textContent = currency.format(subtotal + delivery);
     deliveryNoteElement.textContent = !hasItems
         ? 'Add items to see delivery options.'
         : delivery
-            ? `Free delivery on orders of ${currency.format(35)} or more.`
+            ? `Free delivery on orders of ${currency.format(freeDeliveryThreshold)} or more.`
             : 'Your order qualifies for free delivery.';
+    deliveryProgressText.textContent = !hasItems
+        ? `Add ${currency.format(freeDeliveryThreshold)} to your cart for free delivery.`
+        : remaining
+            ? `Add ${currency.format(remaining)} more for free delivery.`
+            : 'You unlocked free delivery!';
+    const progress = document.querySelector('.delivery-progress');
+    const progressValue = Math.min(freeDeliveryThreshold, subtotal);
+    progress.setAttribute('aria-valuenow', String(progressValue));
+    progress.querySelector('span').style.width = `${(progressValue / freeDeliveryThreshold) * 100}%`;
 }
 
 cartItemsElement.addEventListener('click', event => {
@@ -125,6 +146,12 @@ cartItemsElement.addEventListener('click', event => {
 
     switch (button.dataset.action) {
         case 'increase':
+            if (
+                Number(item.stock) > 0 &&
+                getProductTotalQuantity(cart, item.baseProductId ?? item.id.split('::')[0]) >= Number(item.stock)
+            ) {
+                return;
+            }
             item.quantity++;
             break;
         case 'decrease':

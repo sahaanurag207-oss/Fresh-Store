@@ -16,6 +16,16 @@ const subtotalElement = document.querySelector('#subtotal');
 const deliveryElement = document.querySelector('#delivery');
 const deliveryNoteElement = document.querySelector('#delivery-note');
 const totalElement = document.querySelector('#total');
+const deliveryProgressText = document.querySelector('#checkout-delivery-progress');
+const couponForm = document.querySelector('#coupon-form');
+const couponInput = document.querySelector('#coupon-code');
+const couponStatus = document.querySelector('#coupon-status');
+const discountLine = document.querySelector('#discount-line');
+const discountElement = document.querySelector('#discount');
+const freeDeliveryThreshold = 35;
+const deliveryFeeAmount = 4.99;
+const couponStorageKey = 'freshStoreCoupon';
+let appliedCoupon = window.localStorage.getItem(couponStorageKey) ?? '';
 
 const codOption = document.querySelector('input[name="paymentMethod"][value="cash-on-delivery"]');
 const codOptionLabel = document.querySelector('#cod-option-label');
@@ -97,6 +107,12 @@ function saveCart() {
     window.localStorage.setItem(cartStorageKey, JSON.stringify(cart));
 }
 
+function getProductTotalQuantity(productId) {
+    return cart
+        .filter(item => (item.baseProductId ?? item.id.split('::')[0]) === productId)
+        .reduce((count, item) => count + item.quantity, 0);
+}
+
 function updateOrderView() {
     checkoutItems.innerHTML = '';
     let subtotal = 0;
@@ -125,7 +141,7 @@ function updateOrderView() {
         details.className = 'checkout-item-details';
         const unitPrice = document.createElement('span');
         unitPrice.className = 'checkout-item-unit-price';
-        unitPrice.textContent = `${currency.format(item.price)} each`;
+        unitPrice.textContent = `${currency.format(item.price)} / ${item.label ?? 'item'}`;
 
         const quantityControls = document.createElement('div');
         quantityControls.className = 'checkout-quantity-controls';
@@ -150,6 +166,8 @@ function updateOrderView() {
         increaseButton.className = 'checkout-quantity-button';
         increaseButton.dataset.action = 'increase';
         increaseButton.dataset.productId = item.id;
+        increaseButton.disabled = Number(item.stock) > 0 &&
+            getProductTotalQuantity(item.baseProductId ?? item.id.split('::')[0]) >= Number(item.stock);
         increaseButton.setAttribute('aria-label', `Increase ${item.name} quantity`);
         increaseButton.innerHTML = '<i class="fa-solid fa-plus" aria-hidden="true"></i>';
 
@@ -170,15 +188,34 @@ function updateOrderView() {
         checkoutItems.append(row);
     });
 
-    const delivery = subtotal >= 35 ? 0 : 4.99;
-    finalTotal = subtotal + delivery;
+    const delivery = subtotal >= freeDeliveryThreshold ? 0 : deliveryFeeAmount;
+    const couponIsEligible = appliedCoupon === 'FRESH30' && subtotal >= 20;
+    const discount = couponIsEligible ? Math.min(subtotal * 0.3, 10) : 0;
+    finalTotal = subtotal + delivery - discount;
 
     subtotalElement.textContent = currency.format(subtotal);
     deliveryElement.textContent = delivery ? currency.format(delivery) : 'Free';
     deliveryNoteElement.textContent = delivery
-        ? `Free delivery on orders of ${currency.format(35)} or more.`
+        ? `Free delivery on orders of ${currency.format(freeDeliveryThreshold)} or more.`
         : 'Your order qualifies for free delivery.';
     totalElement.textContent = currency.format(finalTotal);
+    discountLine.hidden = !discount;
+    discountElement.textContent = `-${currency.format(discount)}`;
+    if (couponInput && appliedCoupon) {
+        couponInput.value = appliedCoupon;
+        couponStatus.textContent = couponIsEligible
+            ? `FRESH30 applied: ${currency.format(discount)} off this order.`
+            : `FRESH30 requires a ${currency.format(20)} subtotal. Add ${currency.format(Math.max(0, 20 - subtotal))} more to use it.`;
+    }
+
+    const remaining = Math.max(0, freeDeliveryThreshold - subtotal);
+    deliveryProgressText.textContent = remaining
+        ? `Add ${currency.format(remaining)} more for free delivery.`
+        : 'You unlocked free delivery!';
+    const progress = document.querySelector('.delivery-progress');
+    const progressValue = Math.min(freeDeliveryThreshold, subtotal);
+    progress.setAttribute('aria-valuenow', String(progressValue));
+    progress.querySelector('span').style.width = `${(progressValue / freeDeliveryThreshold) * 100}%`;
 
     // Cash on Delivery eligibility threshold ($10.01 or higher)
     const isCodEligible = finalTotal > 10;
@@ -212,6 +249,27 @@ function updateOrderView() {
     }
 }
 
+couponForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const code = couponInput.value.trim().toUpperCase();
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    if (code !== 'FRESH30') {
+        appliedCoupon = '';
+        window.localStorage.removeItem(couponStorageKey);
+        couponStatus.textContent = 'That promo code is not valid. Try FRESH30.';
+    } else if (subtotal < 20) {
+        appliedCoupon = '';
+        window.localStorage.removeItem(couponStorageKey);
+        couponStatus.textContent = `FRESH30 applies to orders of ${currency.format(20)} or more.`;
+    } else {
+        appliedCoupon = code;
+        window.localStorage.setItem(couponStorageKey, appliedCoupon);
+        couponStatus.textContent = 'FRESH30 applied: 30% off, up to $10.';
+    }
+    updateOrderView();
+});
+
 checkoutItems.addEventListener('click', event => {
     const button = event.target.closest('button[data-action]');
     if (!button) {
@@ -224,6 +282,12 @@ checkoutItems.addEventListener('click', event => {
     }
 
     if (button.dataset.action === 'increase') {
+        if (
+            Number(item.stock) > 0 &&
+            getProductTotalQuantity(item.baseProductId ?? item.id.split('::')[0]) >= Number(item.stock)
+        ) {
+            return;
+        }
         item.quantity += 1;
     } else if (button.dataset.action === 'decrease' && item.quantity > 1) {
         item.quantity -= 1;
@@ -265,6 +329,9 @@ if (!Array.isArray(cart) || cart.length === 0) {
         }
 
         window.localStorage.removeItem(cartStorageKey);
+        window.localStorage.removeItem(couponStorageKey);
+        document.querySelector('#confirmation-slot').textContent =
+            form.elements['deliverySlot'].value;
         form.hidden = true;
         confirmation.hidden = false;
     });

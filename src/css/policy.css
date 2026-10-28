@@ -28,3 +28,30 @@
 .policy-back {
     margin-top: 24px;
 }
+
+.policy-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.policy-links a {
+    color: #286c1e;
+    text-decoration: none;
+}
+
+.policy-links a:hover,
+.policy-links a:focus-visible {
+    text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+    .cart-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .policy-links {
+        gap: 10px 16px;
+    }
+}

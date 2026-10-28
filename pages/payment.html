@@ -53,11 +53,21 @@
                             </label>
                             <label class="form-field">
                                 ZIP / postal code
-                                <input name="postalCode" autocomplete="postal-code" required maxlength="20">
+                                <input name="postalCode" inputmode="numeric" autocomplete="postal-code" required maxlength="6" pattern="[0-9]{6}" placeholder="6-digit ZIP">
                             </label>
                             <label class="form-field full-width">
                                 Phone number
                                 <input name="phone" type="tel" autocomplete="tel" required maxlength="30">
+                            </label>
+                            <label class="form-field full-width">
+                                Demo delivery window
+                                <select name="deliverySlot" id="delivery-slot" required>
+                                    <option value="" selected disabled>Choose a delivery window</option>
+                                    <option value="Today, 6 PM - 8 PM">Today, 6 PM - 8 PM</option>
+                                    <option value="Tomorrow, 9 AM - 12 PM">Tomorrow, 9 AM - 12 PM</option>
+                                    <option value="Tomorrow, 1 PM - 4 PM">Tomorrow, 1 PM - 4 PM</option>
+                                </select>
+                                <small>Sample time slots only; this demo has no live delivery schedule.</small>
                             </label>
                         </div>
                     </fieldset>
@@ -101,7 +111,7 @@
                         <i class="fa-solid fa-check"></i>
                     </div>
                     <h2>Order placed!</h2>
-                    <p>Your order is confirmed. The order is on the way.</p>
+                    <p>Your demo order is confirmed for <strong id="confirmation-slot"></strong>. No real order or payment has been processed.</p>
                     <a class="primary-link" href="../index.html#categories">Continue shopping</a>
                 </div>
             </section>
@@ -127,6 +137,19 @@
                     <strong id="delivery">Free</strong>
                 </div>
                 <p class="delivery-note" id="delivery-note"></p>
+                <div class="delivery-progress-wrap">
+                    <p id="checkout-delivery-progress"></p>
+                    <div class="delivery-progress" role="progressbar" aria-label="Progress toward free delivery" aria-valuemin="0" aria-valuemax="35" aria-valuenow="0"><span></span></div>
+                </div>
+                <form class="coupon-entry" id="coupon-form">
+                    <label for="coupon-code">Promo code</label>
+                    <div><input id="coupon-code" name="coupon" autocomplete="off" placeholder="FRESH30"><button type="submit">Apply</button></div>
+                    <p id="coupon-status" role="status" aria-live="polite"></p>
+                </form>
+                <div class="summary-line discount-line" id="discount-line" hidden>
+                    <span>FRESH30 discount</span>
+                    <strong id="discount">-$0.00</strong>
+                </div>
                 <div class="summary-total">
                     <span>Total</span>
                     <strong id="total">$0.00</strong>
