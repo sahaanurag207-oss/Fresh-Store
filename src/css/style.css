@@ -1133,6 +1133,20 @@ input {
   border-color: #dce7d7;
 }
 
+.search-box:focus-within {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.search-box:has(input:focus-visible) {
+  outline: 2px solid #347d0b;
+  outline-offset: 3px;
+}
+
+.search-box input:focus-visible {
+  outline: none;
+}
+
 .search-box input {
   color: #253323;
 }
