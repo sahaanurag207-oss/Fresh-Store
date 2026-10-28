@@ -460,6 +460,37 @@
 }
 
 @media (max-width: 520px) {
+    .cart-main {
+        width: calc(100% - 24px);
+    }
+
+    .cart-layout,
+    .cart-panel,
+    .summary-panel,
+    .payment-panel,
+    .payment-summary,
+    .checkout-section,
+    .payment-option {
+        min-width: 0;
+    }
+
+    .payment-panel {
+        padding: 16px;
+    }
+
+    .payment-option {
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .payment-option > span:last-child {
+        min-width: 0;
+    }
+
+    .payment-option small {
+        overflow-wrap: anywhere;
+    }
+
     .form-grid {
         grid-template-columns: 1fr;
     }

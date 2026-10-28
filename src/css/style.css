@@ -1714,8 +1714,19 @@ input {
   }
 
   .delivery-checker {
+    width: 100%;
+    max-width: 320px;
     margin: 0 auto;
     text-align: left;
+  }
+
+  .delivery-checker > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .delivery-checker input {
+    width: 0;
   }
 
   .catalog-toolbar {

@@ -23,7 +23,6 @@ const cartStorageKey = 'freshStoreCart';
 const deliveryFee = 4.99;
 const freeDeliveryThreshold = 35;
 const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
-const supportedPostalCodes = new Set(['100001', '100002', '100003', '100011']);
 let cart = JSON.parse(window.localStorage.getItem(cartStorageKey) ?? '[]');
 let activeCategory = 'all';
 
@@ -517,11 +516,12 @@ document.querySelector('#delivery-checker')?.addEventListener('submit', event =>
     event.preventDefault();
     const postalCode = document.querySelector('#delivery-postal-code').value.trim();
     const status = document.querySelector('#delivery-status');
-    status.textContent = supportedPostalCodes.has(postalCode)
-        ? `Good news — ${postalCode} is in this demo's sample delivery area.`
-        : `${postalCode} is not in this demo's sample area. Try 100001, 100002, 100003, or 100011.`;
-    status.classList.toggle('is-available', supportedPostalCodes.has(postalCode));
-    status.classList.toggle('is-unavailable', !supportedPostalCodes.has(postalCode));
+    const isValidPostalCode = /^\d{6}$/.test(postalCode);
+    status.textContent = isValidPostalCode
+        ? `Good news — ${postalCode} is accepted by this demo's six-digit ZIP checker.`
+        : 'Enter a ZIP code with exactly 6 digits.';
+    status.classList.toggle('is-available', isValidPostalCode);
+    status.classList.toggle('is-unavailable', !isValidPostalCode);
 });
 
 migrateLegacyProducts();
