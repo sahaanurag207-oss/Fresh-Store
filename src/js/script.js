@@ -518,8 +518,8 @@ document.querySelector('#delivery-checker')?.addEventListener('submit', event =>
     const status = document.querySelector('#delivery-status');
     const isValidPostalCode = /^\d{6}$/.test(postalCode);
     status.textContent = isValidPostalCode
-        ? `Good news — ${postalCode} is accepted by this demo's six-digit ZIP checker.`
-        : 'Enter a ZIP code with exactly 6 digits.';
+        ? 'ZIP code format accepted.'
+        : 'Enter a valid 6-digit ZIP code.';
     status.classList.toggle('is-available', isValidPostalCode);
     status.classList.toggle('is-unavailable', !isValidPostalCode);
 });
