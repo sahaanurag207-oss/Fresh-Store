@@ -1096,7 +1096,9 @@ input {
 /* Practical storefront controls */
 .hero {
   min-height: 0;
-  background: linear-gradient(135deg, #f1f8eb 0%, #fbfcf9 100%);
+  background:
+    radial-gradient(ellipse at top right, rgba(122, 184, 93, 0.363), transparent 38%),
+    linear-gradient(135deg, #f1f8eb 0%, #fbfcf9 100%);
   color: #263a27;
 }
 
