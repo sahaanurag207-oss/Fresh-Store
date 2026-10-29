@@ -25,7 +25,6 @@ A clean, responsive e-commerce grocery landing page built with pure semantic HTM
 ├── assets/
 ├── pages/
 │   ├── cart.html
-│   ├── index.html
 │   ├── payment.html
 │   ├── policy.html
 │   ├── refund.html

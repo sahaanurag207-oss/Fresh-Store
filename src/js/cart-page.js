@@ -53,7 +53,7 @@ function renderCart(cart) {
     emptyCartElement.hidden = hasItems;
     clearCartButton.hidden = !hasItems;
     checkoutLink.setAttribute('aria-disabled', String(!hasItems));
-    checkoutLink.href = hasItems ? 'payment.html' : 'index.html#categories';
+    checkoutLink.href = hasItems ? 'payment.html' : '../index.html#categories';
     checkoutLink.firstChild.textContent = hasItems ? 'Continue to payment ' : 'Continue shopping ';
 
     let subtotal = 0;
