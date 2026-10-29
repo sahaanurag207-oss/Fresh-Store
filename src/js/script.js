@@ -546,16 +546,28 @@ document.querySelector('#drawer-checkout')?.addEventListener('click', event => {
     }
 });
 
+const deliveryPostalCodeInput = document.querySelector('#delivery-postal-code');
+const deliveryStatus = document.querySelector('#delivery-status');
+
+deliveryPostalCodeInput?.addEventListener('input', () => {
+    deliveryStatus.textContent = '';
+    deliveryStatus.classList.remove('is-valid', 'is-invalid');
+});
+
+deliveryPostalCodeInput?.addEventListener('invalid', () => {
+    deliveryStatus.textContent = 'Enter a valid 6-digit ZIP code.';
+    deliveryStatus.classList.add('is-invalid');
+    deliveryStatus.classList.remove('is-valid');
+});
+
 document.querySelector('#delivery-checker')?.addEventListener('submit', event => {
     event.preventDefault();
-    const postalCode = document.querySelector('#delivery-postal-code').value.trim();
-    const status = document.querySelector('#delivery-status');
-    const isValidPostalCode = /^\d{6}$/.test(postalCode);
-    status.textContent = isValidPostalCode
-        ? 'ZIP code format accepted.'
+    const isValidPostalCode = /^\d{6}$/.test(deliveryPostalCodeInput.value.trim());
+    deliveryStatus.textContent = isValidPostalCode
+        ? 'Delivery is available in your area.'
         : 'Enter a valid 6-digit ZIP code.';
-    status.classList.toggle('is-available', isValidPostalCode);
-    status.classList.toggle('is-unavailable', !isValidPostalCode);
+    deliveryStatus.classList.toggle('is-valid', isValidPostalCode);
+    deliveryStatus.classList.toggle('is-invalid', !isValidPostalCode);
 });
 
 migrateLegacyProducts();

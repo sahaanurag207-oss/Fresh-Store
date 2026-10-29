@@ -871,6 +871,17 @@ input {
   transform: translateY(-2px);
 }
 
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.social-links a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
 .footer-bottom {
     max-width: 1200px;
     margin: 1.5rem auto 0;
@@ -1261,11 +1272,11 @@ input {
   font-size: 11px !important;
 }
 
-.delivery-checker p.is-available {
+.delivery-checker p.is-valid {
   color: #267343;
 }
 
-.delivery-checker p.is-unavailable {
+.delivery-checker p.is-invalid {
   color: #a63e31;
 }
 
@@ -1578,6 +1589,13 @@ input {
 .drawer-item-total {
   grid-column: 3;
   grid-row: 1 / span 2;
+  font-size: 12px;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 12px;
 }
 
